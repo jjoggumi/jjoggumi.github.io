@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d221f67"],{cd1a:function(n,e,c){"use strict";c.r(e);var s=function(){var n=this,e=n._self._c;return e("main",[n._v("\n  Checks & Radios & Swiches\n")])},a=[],t={name:"Selectbox"},u=t,i=c("2877"),l=Object(i["a"])(u,s,a,!1,null,null,null);e["default"]=l.exports}}]);
+//# sourceMappingURL=chunk-2d221f67.03fe0de4.js.map
