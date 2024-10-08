@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d229776"],{de21:function(n,e,t){"use strict";t.r(e);var u=function(){var n=this,e=n._self._c;return e("main",[n._v("\n테이블\n\n")])},a=[],l={name:"ComponentsTable"},o=l,s=t("2877"),c=Object(s["a"])(o,u,a,!1,null,null,null);e["default"]=c.exports}}]);
+//# sourceMappingURL=chunk-2d229776.52c106d6.js.map
