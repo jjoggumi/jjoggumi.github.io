@@ -124,264 +124,437 @@
     <!-- // 매출기준선택  -->
 
     <!-- 내주변 경쟁 매장 매출현황 -->
-    <div class="competitor-store-sales">
+    <div class="store-sales-report">
       <div class="tit">내주변 경쟁 매장 매출현황</div>
-      <div class="smr">
-        내 매장 매출은 <span class="underline">2024년 8월 매출 기준</span>
-        <br />
-        내가 속한 상권 내에서 <br />
-        <span class="underline">평균매출 대비 21% 높습니다.</span>
-      </div>
-      <!-- 내 주변 매장 기준 시점별 매출 -->
-      <section>
-        <div class="tit-wrap">
-          <div class="tit">내 주변 매장 기준 시점별 매출</div>
-          <div class="unit">(단위 : 만원)</div>
+      <button type="button" class="btn-close"></button>
+      <div class="con">
+        <div class="smr">
+          내 매장 매출은 <span class="underline">2024년 8월 매출 기준</span>
+          <br />
+          내가 속한 상권 내에서 <br />
+          <span class="underline">평균매출 대비 21% 높습니다.</span>
         </div>
-        <div class="chart-wrap">
-          <canvas id="chart01" style="width: 100%; height: 100%"></canvas>
-        </div>
-        <div class="desc">
-          내 매장 매출 증감율은 직전월 기준 내가 속한 상권내에서 평균매출 증감률
-          대비 12% 높습니다.
-        </div>
-        <div class="ref">
-          * 비교매장은 내 매장기준 높은 증가율부터 낮은 감소율에 있는 경쟁업체로
-          선정되었습니다.
-        </div>
-      </section>
-      <!-- 내가 선택한 경쟁 매장 기준 매출 -->
-      <section class="list">
-        <div class="tit-wrap">
-          <div class="tit">내가 선택한 경쟁 매장 기준 매출</div>
-          <div class="smr">
-            내 매장과 비교 하시고 싶은 경쟁 매장을 선택해주세요.
+        <!-- 내 주변 매장 기준 시점별 매출 -->
+        <section>
+          <div class="tit-wrap">
+            <div class="tit">내 주변 매장 기준 시점별 매출</div>
+            <div class="unit">(단위 : 만원)</div>
           </div>
-        </div>
-        <ul class="check-list">
-          <li class="active">
-            <input type="checkbox" id="1" />
-            <label for="1">
-              <div class="name">AAA매장</div>
-              <div class="add">서울 종로구 자하문로 19길 36</div>
-            </label>
-          </li>
-          <li>
-            <input type="checkbox" id="2" />
-            <label for="2">
-              <div class="name">BBB매장</div>
-              <div class="add">
-                서울 종로구 자하문로 19길 36 자하문로 19길 36
-              </div>
-            </label>
-          </li>
-          <li>
-            <input type="checkbox" id="3" />
-            <label for="3">
-              <div class="name">AAA매장</div>
-              <div class="add">서울 종로구 자하문로 19길 36</div>
-            </label>
-          </li>
-        </ul>
-      </section>
-
-      <!-- 성별 유입인구 수 -->
-      <section>
-        <div class="tit-wrap">
-          <div class="tit">성별 유입인구 수</div>
-          <div class="unit">(단위 : 명)</div>
-        </div>
-        <div class="chart-wrap">
-          <div class="chart-left">
-            <canvas id="chart02" style="width: 100%; height: 100%"></canvas>
+          <div class="chart-wrap">
+            <canvas id="chart01" style="width: 100%; height: 100%"></canvas>
           </div>
-          <div class="chart-right">
-            <canvas id="chart03" style="width: 100%; height: 100%"></canvas>
-          </div>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <tbody>
-              <tr>
-                <th>구분</th>
-                <td>24.07</td>
-                <td>24.09</td>
-              </tr>
-              <tr>
-                <th>남자</th>
-                <td>1,000</td>
-                <td>1,120</td>
-              </tr>
-              <tr>
-                <th>여자</th>
-                <td>1,576</td>
-                <td>1,576</td>
-              </tr>
-              <tr>
-                <th>총인구</th>
-                <td>2,576</td>
-                <td>2,576</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="desc">
-          내 매장 주변 유입 인구는 직전월 기준 대비 12% 증가하였습니다.
-        </div>
-      </section>
-
-      <!-- 연령별 유입인구 수 -->
-      <section>
-        <div class="tit-wrap">
-          <div class="tit">연령별 유입인구 수</div>
-          <div class="unit">(단위 : 명)</div>
-        </div>
-        <div class="chart-wrap"></div>
-        <div class="table-wrap">
-          <table>
-            <tbody>
-              <tr>
-                <th>구분</th>
-                <td>24.07</td>
-                <td>24.09</td>
-              </tr>
-              <tr>
-                <th>10대 남자</th>
-                <td>1,000</td>
-                <td>1,120</td>
-              </tr>
-              <tr>
-                <th>10대 여자</th>
-                <td>1,576</td>
-                <td>1,576</td>
-              </tr>
-              <tr>
-                <th>20대 남자</th>
-                <td>1,000</td>
-                <td>1,120</td>
-              </tr>
-              <tr>
-                <th>20대 여자</th>
-                <td>1,576</td>
-                <td>1,576</td>
-              </tr>
-              <tr>
-                <th>총인구</th>
-                <td>2,576</td>
-                <td>2,576</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="desc">
-          해당지역은 직전월 기준 대비 20대 남성의 유입인구 수가 12%
-          증가하였습니다.
-        </div>
-      </section>
-
-      <!-- 거주인구 수 -->
-      <section>
-        <div class="tit-wrap">
-          <div class="tit">거주인구</div>
-          <div class="unit">(단위 : 명)</div>
-        </div>
-        <div class="chart-wrap"></div>
-        <div class="table-wrap">
-          <table>
-            <tbody>
-              <tr>
-                <th>구분</th>
-                <td>24.07</td>
-                <td>24.09</td>
-              </tr>
-              <tr>
-                <th>10대</th>
-                <td>1,000</td>
-                <td>1,120</td>
-              </tr>
-              <tr>
-                <th>20대</th>
-                <td>1,576</td>
-                <td>1,576</td>
-              </tr>
-              <tr>
-                <th>30대</th>
-                <td>1,000</td>
-                <td>1,120</td>
-              </tr>
-              <tr>
-                <th>40대</th>
-                <td>1,576</td>
-                <td>1,576</td>
-              </tr>
-              <tr>
-                <th>총인구</th>
-                <td>2,576</td>
-                <td>2,576</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="desc">거주인구는 20대, 남성의 인구가 많습니다.</div>
-      </section>
-
-      <!-- 직장인구 수 -->
-      <section>
-        <div class="tit-wrap">
-          <div class="tit">직장인구</div>
-          <div class="unit">(단위 : 명)</div>
-        </div>
-        <div class="chart-wrap"></div>
-        <div class="table-wrap">
-          <table>
-            <tbody>
-              <tr>
-                <th>구분</th>
-                <td>24.07</td>
-                <td>24.09</td>
-              </tr>
-              <tr>
-                <th>10대</th>
-                <td>1,000</td>
-                <td>1,120</td>
-              </tr>
-              <tr>
-                <th>20대</th>
-                <td>1,576</td>
-                <td>1,576</td>
-              </tr>
-              <tr>
-                <th>30대</th>
-                <td>1,000</td>
-                <td>1,120</td>
-              </tr>
-              <tr>
-                <th>40대</th>
-                <td>1,576</td>
-                <td>1,576</td>
-              </tr>
-              <tr>
-                <th>총인구</th>
-                <td>2,576</td>
-                <td>2,576</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="desc">직장인구는 20대, 여성의 인구가 많습니다.</div>
-      </section>
-      <section class="business-status">
-        <div class="tit-wrap">
-          <div class="tit">창업·폐업</div>
           <div class="desc">
-            내 매장 주변에서 2024년 9월 기준 <br />신규매장이 3개 창업하였고,
-            2개 폐업하였으며, <br />그중 1곳이 내 가게와 같은 업종입니다.
+            내 매장 매출 증감율은 직전월 기준 내가 속한 상권내에서 평균매출
+            증감률 대비 12% 높습니다.
           </div>
-          <div class="ref">* 창/폐업은 전월 기준입니다.</div>
-        </div>
-      </section>
+          <div class="ref">
+            * 비교매장은 내 매장기준 높은 증가율부터 낮은 감소율에 있는
+            경쟁업체로 선정되었습니다.
+          </div>
+        </section>
+        <!-- 내가 선택한 경쟁 매장 기준 매출 -->
+        <section class="list">
+          <div class="tit-wrap">
+            <div class="tit">내가 선택한 경쟁 매장 기준 매출</div>
+            <div class="smr">
+              내 매장과 비교 하시고 싶은 경쟁 매장을 선택해주세요.
+            </div>
+          </div>
+          <ul class="check-list">
+            <li class="active">
+              <input type="checkbox" id="1" />
+              <label for="1">
+                <div class="name">AAA매장</div>
+                <div class="add">서울 종로구 자하문로 19길 36</div>
+              </label>
+            </li>
+            <li>
+              <input type="checkbox" id="2" />
+              <label for="2">
+                <div class="name">BBB매장</div>
+                <div class="add">
+                  서울 종로구 자하문로 19길 36 자하문로 19길 36
+                </div>
+              </label>
+            </li>
+            <li>
+              <input type="checkbox" id="3" />
+              <label for="3">
+                <div class="name">AAA매장</div>
+                <div class="add">서울 종로구 자하문로 19길 36</div>
+              </label>
+            </li>
+          </ul>
+        </section>
+      </div>
     </div>
     <!-- // 내주변 경쟁 매장 매출현황 -->
+
+    <!-- 내 매장 주변현황 -->
+    <div class="store-sales-report">
+      <div class="tit">내주변 경쟁 매장 매출현황</div>
+      <button type="button" class="btn-close"></button>
+      <div class="con">
+        <div class="smr">
+          내 매장 매출은 <span class="underline">2024년 8월 매출 기준</span>
+          <br />
+          내가 속한 상권 내에서 <br />
+          <span class="underline">평균매출 대비 21% 높습니다.</span>
+        </div>
+
+        <!-- 내 주변 매장 기준 시점별 매출 -->
+        <section>
+          <div class="tit-wrap">
+            <div class="tit">내 주변 매장 기준 시점별 매출</div>
+            <div class="unit">(단위 : 만원)</div>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="chart01" style="width: 100%; height: 100%"></canvas>
+          </div>
+          <div class="desc">
+            내 매장 매출 증감율은 직전월 기준 내가 속한 상권내에서 평균매출
+            증감률 대비 12% 높습니다.
+          </div>
+          <div class="ref">
+            * 비교매장은 내 매장기준 높은 증가율부터 낮은 감소율에 있는
+            경쟁업체로 선정되었습니다.
+          </div>
+        </section>
+
+        <!-- 내가 선택한 경쟁 매장 기준 매출 -->
+        <section class="list">
+          <div class="tit-wrap">
+            <div class="tit">내가 선택한 경쟁 매장 기준 매출</div>
+            <div class="smr">
+              내 매장과 비교 하시고 싶은 경쟁 매장을 선택해주세요.
+            </div>
+          </div>
+          <ul class="check-list">
+            <li class="active">
+              <input type="checkbox" id="1" />
+              <label for="1">
+                <div class="name">AAA매장</div>
+                <div class="add">서울 종로구 자하문로 19길 36</div>
+              </label>
+            </li>
+            <li>
+              <input type="checkbox" id="2" />
+              <label for="2">
+                <div class="name">BBB매장</div>
+                <div class="add">
+                  서울 종로구 자하문로 19길 36 자하문로 19길 36
+                </div>
+              </label>
+            </li>
+            <li>
+              <input type="checkbox" id="3" />
+              <label for="3">
+                <div class="name">AAA매장</div>
+                <div class="add">서울 종로구 자하문로 19길 36</div>
+              </label>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 성별 유입인구 수 -->
+        <section>
+          <div class="tit-wrap">
+            <div class="tit">성별 유입인구 수</div>
+            <div class="unit">(단위 : 명)</div>
+          </div>
+          <div class="chart-wrap">
+            <div class="chart-left">
+              <canvas id="chart02" style="width: 100%; height: 100%"></canvas>
+              <div class="label">24.07</div>
+            </div>
+            <div class="chart-right">
+              <canvas id="chart03" style="width: 100%; height: 100%"></canvas>
+              <div class="label">24.09</div>
+            </div>
+            <div id="chart02-labels"></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr>
+                  <th>구분</th>
+                  <td>24.07</td>
+                  <td>24.09</td>
+                </tr>
+                <tr>
+                  <th>남자</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>여자</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>총인구</th>
+                  <td>2,576</td>
+                  <td>2,576</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            내 매장 주변 유입 인구는 직전월 기준 대비 12% 증가하였습니다.
+          </div>
+        </section>
+
+        <!-- 연령별 유입인구 수 -->
+        <section>
+          <div class="tit-wrap">
+            <div class="tit">연령별 유입인구 수</div>
+            <div class="unit">(단위 : 명)</div>
+          </div>
+          <div class="chart-wrap">
+            <div class="chart-left">
+              <canvas id="chart04" style="width: 100%; height: 100%"></canvas>
+              <div class="label">24.09</div>
+            </div>
+            <div class="chart-right">
+              <canvas id="chart05" style="width: 100%; height: 100%"></canvas>
+              <div class="label">24.09</div>
+            </div>
+            <div id="chart04-labels"></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr>
+                  <th>구분</th>
+                  <td>24.07</td>
+                  <td>24.09</td>
+                </tr>
+                <tr>
+                  <th>10대 남자</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>10대 여자</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>20대 남자</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>20대 여자</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>총인구</th>
+                  <td>2,576</td>
+                  <td>2,576</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            해당지역은 직전월 기준 대비 20대 남성의 유입인구 수가 12%
+            증가하였습니다.
+          </div>
+        </section>
+
+        <!-- 거주인구 수 -->
+        <section>
+          <div class="tit-wrap">
+            <div class="tit">거주인구</div>
+            <div class="unit">(단위 : 명)</div>
+          </div>
+          <div class="status-wrap">
+            <div class="txt">
+              <div class="label">총 거주 인구 수</div>
+              <div class="data">27,143</div>
+            </div>
+            <div class="gender">
+              <div class="gender-bar">
+                <div class="man" style="width: 61%">
+                  <div class="label">남성</div>
+                  61%
+                </div>
+                <div class="woman" style="width: 39%">
+                  <div class="label">여성</div>
+                  39%
+                </div>
+              </div>
+            </div>
+            <div class="age-group">
+              <div class="age10">
+                <div class="label">10대</div>
+                <div class="age-bar" style="height: calc(50% + 22%)">20%</div>
+              </div>
+              <div class="age20">
+                <div class="label">20대</div>
+                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
+              </div>
+              <div class="age30">
+                <div class="label">30대</div>
+                <div class="age-bar" style="height: calc(50% + 12%)">12%</div>
+              </div>
+              <div class="age40">
+                <div class="label">40대</div>
+                <div class="age-bar" style="height: calc(50% + 16%)">16%</div>
+              </div>
+              <div class="age50">
+                <div class="label">50대</div>
+                <div class="age-bar" style="height: calc(50% + 18%)">18%</div>
+              </div>
+              <div class="age60">
+                <div class="label">60대</div>
+                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
+              </div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr>
+                  <th>구분</th>
+                  <td>24.07</td>
+                  <td>24.09</td>
+                </tr>
+                <tr>
+                  <th>10대</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>20대</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>30대</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>40대</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>총인구</th>
+                  <td>2,576</td>
+                  <td>2,576</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">거주인구는 20대, 남성의 인구가 많습니다.</div>
+        </section>
+
+        <!-- 직장인구 수 -->
+        <section>
+          <div class="tit-wrap">
+            <div class="tit">직장인구</div>
+            <div class="unit">(단위 : 명)</div>
+          </div>
+          <div class="status-wrap">
+            <div class="txt">
+              <div class="label">총 거주 인구 수</div>
+              <div class="data">27,143</div>
+            </div>
+            <div class="gender">
+              <div class="gender-bar">
+                <div class="man" style="width: 61%">
+                  <div class="label">남성</div>
+                  61%
+                </div>
+                <div class="woman" style="width: 39%">
+                  <div class="label">여성</div>
+                  39%
+                </div>
+              </div>
+            </div>
+            <div class="age-group">
+              <div class="age10">
+                <div class="label">10대</div>
+                <div class="age-bar" style="height: calc(50% + 22%)">20%</div>
+              </div>
+              <div class="age20">
+                <div class="label">20대</div>
+                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
+              </div>
+              <div class="age30">
+                <div class="label">30대</div>
+                <div class="age-bar" style="height: calc(50% + 12%)">12%</div>
+              </div>
+              <div class="age40">
+                <div class="label">40대</div>
+                <div class="age-bar" style="height: calc(50% + 16%)">16%</div>
+              </div>
+              <div class="age50">
+                <div class="label">50대</div>
+                <div class="age-bar" style="height: calc(50% + 18%)">18%</div>
+              </div>
+              <div class="age60">
+                <div class="label">60대</div>
+                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
+              </div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr>
+                  <th>구분</th>
+                  <td>24.07</td>
+                  <td>24.09</td>
+                </tr>
+                <tr>
+                  <th>10대</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>20대</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>30대</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>40대</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>총인구</th>
+                  <td>2,576</td>
+                  <td>2,576</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">직장인구는 20대, 여성의 인구가 많습니다.</div>
+        </section>
+
+        <!-- 창업폐업 -->
+        <section class="business-status">
+          <div class="tit-wrap">
+            <div class="tit">창업·폐업</div>
+            <div class="desc">
+              내 매장 주변에서 2024년 9월 기준 <br />신규매장이 3개 창업하였고,
+              2개 폐업하였으며, <br />그중 1곳이 내 가게와 같은 업종입니다.
+            </div>
+            <div class="ref">* 창/폐업은 전월 기준입니다.</div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <!-- // 내 매장 주변현황 -->
 
     <!-- bottom Area  -->
     <div class="bottom-area">
@@ -464,13 +637,13 @@
           $(this).closest(".modal").removeClass("open");
         });
 
-        // 컨트롤러 시설물, 유동인구 정보 토글버튼
-        $(".amntBtn").click(function () {
-          $(".amntBtn, .amntCon").toggleClass("active");
+        //내주변 경쟁 매장 매출 현황 열기
+        $(".btn-detail").click(function () {
+          $(".store-sales-report").addClass("open");
         });
-        $(".dstBtn").click(function () {
-          $(".dstBtn, .dstCon, .dstAlert").toggleClass("active");
-          $(".dstAlert").removeAttr("style");
+        //내주변 경쟁 매장 매출 현황 닫기
+        $(".store-sales-report .btn-close").click(function () {
+          $(".store-sales-report").removeClass("open");
         });
 
         // 하단 touch swipe
@@ -501,6 +674,6 @@
         });
       });
     </script>
-    <script src="./js/lib/reoprtChart.js"></script>
+    <script src="./js/lib/reportChart.js"></script>
   </body>
 </html>

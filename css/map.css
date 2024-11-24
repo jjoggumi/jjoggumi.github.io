@@ -84,16 +84,6 @@ h5 {
 }
 
 /* common form */
-/* input,select,textarea {border:1px solid #ccc;border-radius: 0.5rem;padding: 0 1rem;}
-input,select{height:3.5rem; }
-select{-webkit-appearance: none;appearance: none;padding-right: 2.5rem;background: #fff url(../images/icoSelect.svg) no-repeat calc(100% - 16px) center;}
-
-.radioCstBtn {width: 100%;}
-.radioCstBtn input{display:none;}
-.radioCstBtn input[type=radio] + label {background: #fff;border:1px solid var(--color-primary);margin: 0;padding: 1.2rem 1rem 1rem;  width: 100%;
-  border-radius: 0.5rem 0 0 0.5rem;text-align: center; font-size: 1.4rem;color: var(--font-point-color);font-family: var(--font-sb);cursor: pointer;}
-.radioCstBtn + .radioCstBtn input[type=radio] + label {border-radius: 0 0.5rem 0.5rem 0;}
-.radioCstBtn input[type=radio]:checked + label {color: #fff;  background: var(--color-primary);} /* Checked */
 .radioCstBtn input[type="radio"] + label:hover {
   box-shadow: 0 0 0px 3px rgb(60 106 255 / 14%);
 }
@@ -194,13 +184,6 @@ button:focus {
 .tab button.active {
   background: #ffffff;
   color: #111;
-}
-.tabcontent {
-  max-height: 0;
-  overflow: hidden;
-}
-.tabcontent.active {
-  max-height: 100%;
 }
 
 /* common table */
@@ -326,20 +309,6 @@ table tbody th {
   border: 0;
   background: url(../images/ico-close2.svg);
 }
-.modal-head .btn-close::after,
-.modal-head .btn-close::before {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: calc(50% - 1rem);
-  width: 1.5rem;
-  height: 2px;
-  background: #6f7075;
-  transform: rotate(45deg);
-}
-.modal-head .btn-close::after {
-  transform: rotate(-45deg);
-}
 .modal-body {
   max-height: calc(100vh - 6.3rem);
   overflow: auto;
@@ -433,6 +402,7 @@ header .menu-list > button {
   text-align: left;
   border: 0;
   border-radius: 15px;
+  font-size: 1.6rem;
 }
 header .menu-list > button::before,
 header .menu-list > button::after {
@@ -725,8 +695,6 @@ header.open .menu-list {
 .poiIco .high-shop .info-box::before {
   border-top: 6px solid #ed1717;
 }
-.poiIco .high-shop .name {
-}
 .poiIco .high-shop .rate {
   font-size: 18px;
   color: #ed1717;
@@ -741,8 +709,6 @@ header.open .menu-list {
 .poiIco .low-shop .info-box::before {
   border-top: 6px solid #3c6aff;
 }
-.poiIco .low-shop .name {
-}
 .poiIco .low-shop .rate {
   font-size: 18px;
   color: #3c6aff;
@@ -753,120 +719,308 @@ header.open .menu-list {
 }
 
 /* 내주변 경쟁 매장 매출현황 */
-.competitor-store-sales {
+.store-sales-report {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  top: 155px;
+  bottom: 0;
   z-index: 1000;
   background: #fff;
   border-radius: 25px;
-  overflow: scroll;
-  height: calc(100dvh - 138px);
+  height: 0;
+  transition: 0.5s;
 }
-.competitor-store-sales section {
-  border-top: 8px solid var(--color-bg);
-  padding: 24px;
+.store-sales-report.open {
+  height: calc(100dvh - 155px);
 }
-.competitor-store-sales section.list {
-  padding: 0;
+.store-sales-report > .btn-close {
+  text-indent: -9999999px;
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 0;
+  background: url(../images/ico-close2.svg);
 }
-.competitor-store-sales section.list .tit-wrap {
-  padding: 24px 24px;
-  margin: 0;
-}
-.competitor-store-sales > .tit {
+.store-sales-report > .tit {
   font-size: 2rem;
   font-weight: var(--font-sb);
-  padding: 36px 24px 0 24px;
+  padding: 36px 24px 2rem 24px;
 }
 
-.competitor-store-sales > .smr {
-  padding: 20px 24px 24px 24px;
+.store-sales-report > .con {
+  height: calc(100% - 64px);
+  overflow-y: scroll;
+}
+
+.store-sales-report .con > .smr {
+  padding: 0 24px 24px 24px;
   font-size: 1.6rem;
   line-height: 1.3;
   position: relative;
 }
 
-.competitor-store-sales > .smr::after {
+.store-sales-report .con > .smr::after {
   display: block;
   content: "";
   width: 5rem;
   height: 5rem;
   position: absolute;
-  right: 3.2rem;
-  top: 2.4rem;
+  right: 2.2rem;
+  top: 0rem;
   border-radius: 100px;
   background: #f5f5f5 url(../images/ico-shop.svg) no-repeat center;
 }
 
-.competitor-store-sales .underline {
+.store-sales-report .underline {
   text-decoration: underline;
 }
 
-.competitor-store-sales .tit-wrap {
+.store-sales-report section {
+  border-top: 8px solid var(--color-bg);
+  padding: 24px;
+}
+.store-sales-report section.list {
+  padding: 0;
+}
+.store-sales-report section.list .tit-wrap {
+  padding: 24px 24px;
+  margin: 0;
+}
+.store-sales-report .tit-wrap {
   margin-bottom: 10px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 }
-.competitor-store-sales .tit-wrap .tit {
+.store-sales-report .tit-wrap .tit {
   font-size: 16px;
   font-weight: var(--font-sb);
 }
-.competitor-store-sales .tit-wrap .smr {
+.store-sales-report .tit-wrap .smr {
   font-size: 1.4rem;
   color: #666;
   width: 100%;
   padding-top: 0.4rem;
 }
-.competitor-store-sales .tit-wrap .unit {
+.store-sales-report .tit-wrap .unit {
   font-size: 1.2rem;
   color: #666;
   font-weight: var(--font-r);
 }
 
-.competitor-store-sales .chart-wrap {
-  display:flex;
-  justify-content:space-around;
+.store-sales-report .chart-wrap {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
   background-color: #f5f5f5;
   margin-bottom: 20px;
   padding: 12px;
+  border-radius: 0.8rem;
 }
-.competitor-store-sales .chart-wrap .chart-left,
-.competitor-store-sales .chart-wrap .chart-right {width:45%;}
+.store-sales-report .chart-wrap .chart-left,
+.store-sales-report .chart-wrap .chart-right {
+  width: 45%;
+}
+.store-sales-report .chart-wrap > div > .label {
+  text-align: center;
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+}
 
-.competitor-store-sales .desc {
+#chart02-labels,
+#chart04-labels {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.2rem;
+  list-style: none;
+}
+#chart02-labels li {
+  text-align: center;
+  width: auto;
+  margin: 1.5rem 1rem 1rem;
+}
+#chart04-labels li {
+  text-align: center;
+  width: 100%;
+  margin: 1.5rem 0 1rem;
+}
+#chart02-labels li::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 10px;
+}
+
+#chart02-labels li:nth-child(1)::before {
+  background: #5ba7ff;
+}
+#chart02-labels li:nth-child(2)::before {
+  background: #ff7c7c;
+}
+
+#chart04-labels li::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 10px;
+  margin: 0 auto 0.4rem;
+}
+
+#chart04-labels li:nth-child(1)::before {
+  background: #ff7c7c;
+}
+#chart04-labels li:nth-child(2)::before {
+  background: #ffaa5b;
+}
+#chart04-labels li:nth-child(3)::before {
+  background: #ffdc5f;
+}
+#chart04-labels li:nth-child(4)::before {
+  background: #6fd7b8;
+}
+#chart04-labels li:nth-child(5)::before {
+  background: #5ba7ff;
+}
+#chart04-labels li:nth-child(6)::before {
+  background: #b584fa;
+}
+.store-sales-report .status-wrap {
+  background-color: #f5f5f5;
+  margin-bottom: 20px;
+  padding: 30px 12px;
+  border-radius: 0.8rem;
+}
+.store-sales-report .status-wrap .txt {
+  text-align: center;
+}
+.store-sales-report .status-wrap .txt .label {
+  font-size: 1.4rem;
+}
+.store-sales-report .status-wrap .txt .data {
+  font-size: 2.4rem;
+  font-weight: var(--font-sb);
+}
+.store-sales-report .status-wrap .gender .gender-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.2rem 1rem 2rem;
+}
+.store-sales-report .status-wrap .gender .gender-bar::before,
+.store-sales-report .status-wrap .gender .gender-bar::after {
+  display: block;
+  content: "";
+  min-width: 2.1rem;
+  height: 4.3rem;
+  background: url(../images/ico-man.svg);
+}
+.store-sales-report .status-wrap .gender .gender-bar::after {
+  background: url(../images/ico-woman.svg);
+}
+.store-sales-report .status-wrap .gender .gender-bar .man,
+.store-sales-report .status-wrap .gender .gender-bar .woman {
+  background: #5ba7ff;
+  height: 2.5rem;
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  color: #fff;
+  font-weight: var(--font-sb);
+}
+.store-sales-report .status-wrap .gender .gender-bar .woman {
+  background: #ff7c7c;
+  padding-right: 0.5rem;
+  flex-flow: row-reverse;
+}
+.store-sales-report .status-wrap .gender .gender-bar .label {
+  margin: 0 0.5rem;
+}
+.store-sales-report .status-wrap .age-group {
+  display: flex;
+  justify-content: space-around;
+}
+.store-sales-report .status-wrap .age-group div[class^="age"] {
+  width: 3rem;
+  height: 10rem;
+  background: #e2e3e5;
+  border-radius: 5rem;
+  margin-top: 2.4rem;
+  position: relative;
+}
+.store-sales-report .status-wrap .age-group div[class^="age"] .label {
+  position: absolute;
+  top: -2.4rem;
+}
+.store-sales-report .status-wrap .age-group div[class^="age"] .age-bar {
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: var(--font-sb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.store-sales-report .status-wrap .age-group .age10 .age-bar {
+  background: #ff7c7c;
+}
+.store-sales-report .status-wrap .age-group .age20 .age-bar {
+  background: #ffaa5b;
+}
+.store-sales-report .status-wrap .age-group .age30 .age-bar {
+  background: #ffdc5f;
+}
+.store-sales-report .status-wrap .age-group .age40 .age-bar {
+  background: #6fd7b8;
+}
+.store-sales-report .status-wrap .age-group .age50 .age-bar {
+  background: #5ba7ff;
+}
+.store-sales-report .status-wrap .age-group .age60 .age-bar {
+  background: #b584fa;
+}
+
+.store-sales-report .desc {
   font-size: 1.4rem;
   margin-bottom: 10px;
 }
 
-.competitor-store-sales .ref {
+.store-sales-report .ref {
   font-size: 1.2rem;
   color: #909090;
 }
 
-.competitor-store-sales .check-list {
+.store-sales-report .check-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.competitor-store-sales .check-list li {
+.store-sales-report .check-list li {
   border-top: 1px solid #eee;
 }
-.competitor-store-sales .check-list li input[type="checkbox"] {
+.store-sales-report .check-list li input[type="checkbox"] {
   display: none;
 }
-.competitor-store-sales .check-list li label {
+.store-sales-report .check-list li label {
   display: block;
   padding: 1.2rem 2rem;
   margin: 0;
   position: relative;
 }
-.competitor-store-sales .check-list li label::before {
+.store-sales-report .check-list li label::before {
   content: "";
   display: inline-block;
   width: 21px;
@@ -880,22 +1034,22 @@ header.open .menu-list {
   transform: translateY(-50%);
 }
 
-.competitor-store-sales .check-list li .name {
+.store-sales-report .check-list li .name {
   font-weight: var(--font-sb);
   font-size: 1.6rem;
   color: #aaa;
   margin-bottom: 0.4rem;
 }
 
-.competitor-store-sales .check-list li .add {
+.store-sales-report .check-list li .add {
   font-size: 1.4rem;
   color: #aaa;
 }
 
-.competitor-store-sales .check-list li input[type="checkbox"]:checked + label {
+.store-sales-report .check-list li input[type="checkbox"]:checked + label {
   background: #f5f5f5;
 }
-.competitor-store-sales
+.store-sales-report
   .check-list
   li
   input[type="checkbox"]:checked
@@ -903,7 +1057,7 @@ header.open .menu-list {
   background-color: #00bc90;
   border-color: #00bc90;
 }
-.competitor-store-sales
+.store-sales-report
   .check-list
   li
   input[type="checkbox"]:checked
@@ -912,15 +1066,15 @@ header.open .menu-list {
   display: block;
   width: 11px;
   height: 7px;
-  border-left:2px solid #fff;
-  border-bottom:2px solid #fff;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
   position: absolute;
   right: 2.5rem;
   top: calc(50% - 1px);
   transform: translateY(-50%) rotate(-45deg);
 }
 
-.competitor-store-sales
+.store-sales-report
   .check-list
   li
   input[type="checkbox"]:checked
@@ -928,28 +1082,24 @@ header.open .menu-list {
   .name {
   color: #111;
 }
-.competitor-store-sales
-  .check-list
-  li
-  input[type="checkbox"]:checked
-  + label.add {
+.store-sales-report .check-list li input[type="checkbox"]:checked + label.add {
   color: #666;
 }
-.competitor-store-sales .table-wrap {
+.store-sales-report .table-wrap {
   margin-bottom: 20px;
 }
 
-.competitor-store-sales .business-status{
-  height:380px;
-      background: url(../images/ill_report.svg) no-repeat bottom right;
+.store-sales-report .business-status {
+  height: 380px;
+  background: url(../images/ill_report.svg) no-repeat bottom right;
 }
-.competitor-store-sales .business-status .tit-wrap .tit{
-  font-size:18px;
-  padding-bottom:20px;
+.store-sales-report .business-status .tit-wrap .tit {
+  font-size: 18px;
+  padding-bottom: 20px;
 }
-.competitor-store-sales .business-status .tit-wrap .desc{
-  padding-bottom:20px;
-  margin:0;
+.store-sales-report .business-status .tit-wrap .desc {
+  padding-bottom: 20px;
+  margin: 0;
 }
 
 /* Map Area */
