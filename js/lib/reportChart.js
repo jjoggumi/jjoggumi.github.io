@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // 첫 번째 차트 (바 차트)
-  var ctx1 = document.getElementById("chart01").getContext("2d");
-
-  var chart01 = new Chart(ctx1, {
+  // 내 주변 경쟁 매장 기준 시점별 매출
+  var ctx11 = document.getElementById("chart11").getContext("2d");
+  var chart11 = new Chart(ctx11, {
     type: "bar",
     data: {
       labels: ["내 매장", "AAA", "BBB", "CCC", "DDD"],
@@ -62,10 +61,194 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
-  // 성별 유입인구 수 (24.07)
-  var ctx2 = document.getElementById("chart02").getContext("2d");
+  //내가 선택한 경쟁 매장 기준 매출
+  var ctx12 = document.getElementById("chart12").getContext("2d");
+  var chart12 = new Chart(ctx12, {
+    type: "bar",
+    data: {
+      labels: ["내 매장", "AAA", "BBB", "CCC"],
+      datasets: [
+        {
+          data: [1000, 1700, 1600, 600],
+          backgroundColor: [
+            "#0B1D59", // 내 매장 색상
+            "#d9d9d9",
+            "#d9d9d9",
+            "#d9d9d9",
+          ],
+          borderRadius: {
+            topLeft: 50,
+            topRight: 50,
+            bottomLeft: 0,
+            bottomRight: 0,
+          },
+          borderSkipped: false,
+          barThickness: 20,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false, // 라벨 표시 안함
+        },
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          grid: {
+            display: false, // x축 격자 비활성화
+          },
+          ticks: {
+            font: {
+              size: 11,
+              weight: "bold",
+            },
+          },
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false, // y축 격자 비활성화
+          },
+          ticks: {
+            font: {
+              size: 11,
+              weight: "bold",
+            },
+          },
+        },
+      },
+    },
+  });
 
-  var chart02 = new Chart(ctx2, {
+  // 기준 시점별 매출 증감률
+  var ctx21 = document.getElementById("chart21").getContext("2d");
+  var chart21 = new Chart(ctx21, {
+    type: "bar",
+    data: {
+      labels: ["내 매장", "AAA", "BBB", "CCC", "DDD"],
+      datasets: [
+        {
+          data: [1000, 1700, 1600, 600, 800],
+          backgroundColor: [
+            "#0B1D59", // 내 매장 색상
+            "#d9d9d9",
+            "#d9d9d9",
+            "#d9d9d9",
+            "#d9d9d9",
+          ],
+          borderRadius: {
+            topLeft: 50,
+            topRight: 50,
+            bottomLeft: 0,
+            bottomRight: 0,
+          },
+          borderSkipped: false,
+          barThickness: 20,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false, // 라벨 표시 안함
+        },
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          grid: {
+            display: false, // x축 격자 비활성화
+          },
+          ticks: {
+            font: {
+              size: 11,
+              weight: "bold",
+            },
+          },
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false, // y축 격자 비활성화
+          },
+          ticks: {
+            font: {
+              size: 11,
+              weight: "bold",
+            },
+          },
+        },
+      },
+    },
+  });
+
+  // 내가 선택한 경쟁매장 매출변동 비교
+  var ctx22 = document.getElementById("chart22").getContext("2d");
+  var chart22 = new Chart(ctx22, {
+    type: "bar",
+    data: {
+      labels: ["내 매장", "AAA", "BBB", "CCC"],
+      datasets: [
+        {
+          data: [1000, 1700, 1600, 600],
+          backgroundColor: [
+            "#0B1D59", // 내 매장 색상
+            "#d9d9d9",
+            "#d9d9d9",
+            "#d9d9d9",
+          ],
+          borderRadius: {
+            topLeft: 50,
+            topRight: 50,
+            bottomLeft: 0,
+            bottomRight: 0,
+          },
+          borderSkipped: false,
+          barThickness: 20,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false, // 라벨 표시 안함
+        },
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          grid: {
+            display: false, // x축 격자 비활성화
+          },
+          ticks: {
+            font: {
+              size: 11,
+              weight: "bold",
+            },
+          },
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false, // y축 격자 비활성화
+          },
+          ticks: {
+            font: {
+              size: 11,
+              weight: "bold",
+            },
+          },
+        },
+      },
+    },
+  });
+
+  // 성별 유입인구 수 (24.07)
+  var ctx23 = document.getElementById("chart23").getContext("2d");
+
+  var chart23 = new Chart(ctx23, {
     type: "pie",
     data: {
       labels: ["남자", "여자"],
@@ -259,10 +442,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // 차트가 렌더링된 후 라벨 값을 가져와서 div에 추가
-  chart02.options.plugins.legend.onClick = function (e, legendItem) {
-    var labelsDiv = document.getElementById("chart02-labels");
+  chart23.options.plugins.legend.onClick = function (e, legendItem) {
+    var labelsDiv = document.getElementById("chart23-labels");
     labelsDiv.innerHTML = ""; // 기존 내용 지우기
-    chart02.data.labels.forEach(function (label) {
+    chart23.data.labels.forEach(function (label) {
       var labelElement = document.createElement("li");
       labelElement.textContent = label;
       labelsDiv.appendChild(labelElement);
@@ -270,10 +453,133 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   // 초기 라벨 값 설정
-  var labelsDiv = document.getElementById("chart02-labels");
-  chart02.data.labels.forEach(function (label) {
+  var labelsDiv = document.getElementById("chart23-labels");
+  chart23.data.labels.forEach(function (label) {
     var labelElement = document.createElement("li");
     labelElement.textContent = label;
     labelsDiv.appendChild(labelElement);
+  });
+
+  // 내 주변 경쟁 매장 기준 시점별 매출
+  var ctx31 = document.getElementById("chart31").getContext("2d");
+  var chart31 = new Chart(ctx31, {
+    type: "bar",
+    data: {
+      labels: ["내 매장", "AAA", "BBB", "CCC", "DDD"],
+      datasets: [
+        {
+          data: [1000, 1700, 1600, 600, 800],
+          backgroundColor: [
+            "#0B1D59", // 내 매장 색상
+            "#d9d9d9",
+            "#d9d9d9",
+            "#d9d9d9",
+            "#d9d9d9",
+          ],
+          borderRadius: {
+            topLeft: 50,
+            topRight: 50,
+            bottomLeft: 0,
+            bottomRight: 0,
+          },
+          borderSkipped: false,
+          barThickness: 20,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false, // 라벨 표시 안함
+        },
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          grid: {
+            display: false, // x축 격자 비활성화
+          },
+          ticks: {
+            font: {
+              size: 11,
+              weight: "bold",
+            },
+          },
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false, // y축 격자 비활성화
+          },
+          ticks: {
+            font: {
+              size: 11,
+              weight: "bold",
+            },
+          },
+        },
+      },
+    },
+  });
+
+  //내가 선택한 경쟁 매장 기준 매출
+  var ctx32 = document.getElementById("chart32").getContext("2d");
+  var chart32 = new Chart(ctx32, {
+    type: "bar",
+    data: {
+      labels: ["내 매장", "AAA", "BBB", "CCC"],
+      datasets: [
+        {
+          data: [1000, 1700, 1600, 600],
+          backgroundColor: [
+            "#0B1D59", // 내 매장 색상
+            "#d9d9d9",
+            "#d9d9d9",
+            "#d9d9d9",
+          ],
+          borderRadius: {
+            topLeft: 50,
+            topRight: 50,
+            bottomLeft: 0,
+            bottomRight: 0,
+          },
+          borderSkipped: false,
+          barThickness: 20,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false, // 라벨 표시 안함
+        },
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          grid: {
+            display: false, // x축 격자 비활성화
+          },
+          ticks: {
+            font: {
+              size: 11,
+              weight: "bold",
+            },
+          },
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false, // y축 격자 비활성화
+          },
+          ticks: {
+            font: {
+              size: 11,
+              weight: "bold",
+            },
+          },
+        },
+      },
+    },
   });
 });

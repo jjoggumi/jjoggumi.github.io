@@ -3,7 +3,7 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
 
 :root {
-  --color-primary: #ffeb00;
+  --color-primary: #00bc90;
   --color-secondary: #0b1d59;
   --color-success: #4772fe;
   --color-danger: #ed1717;
@@ -12,7 +12,7 @@
 
   /* font */
   --font-color: #111;
-  --font-point-color: #ffeb00;
+  --font-point-color: #00bc90;
   --font-sb: 600;
   --font-r: 400;
   --font-m: 500;
@@ -112,7 +112,6 @@ h5 {
   background: #ebf0ff;
   font-family: var(--font-sb);
 }
-*/
 
 /* common button */
 button {
@@ -320,6 +319,23 @@ table tbody th {
   text-align: right;
 }
 
+/* 토스트 */
+.toast {
+  position: fixed;
+  top: 5.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 5rem;
+  font-size: 1.4rem;
+  display: none;
+  z-index: 1000;
+  text-align: center;
+}
+
 /* Header Area */
 header {
   position: fixed;
@@ -403,6 +419,7 @@ header .menu-list > button {
   border: 0;
   border-radius: 15px;
   font-size: 1.6rem;
+  z-index: 99999999999999;
 }
 header .menu-list > button::before,
 header .menu-list > button::after {
@@ -412,24 +429,34 @@ header .menu-list > button::after {
   height: 40px;
   position: absolute;
   top: 10px;
+  z-index: 9999999999999;
+  background: #000;
 }
 header .menu-list > button::before {
   left: 18px;
 }
-header .menu-list > button.sales-status::before {
-  background: url(../images/ico-sales-status.svg);
+header .menu-list > button.active {
+  background: var(--color-primary);
+  color: #fff;
 }
-header .menu-list > button.prospect::before {
-  background: url(../images/ico-prospect.svg);
+header .menu-list > button.active::before,
+header .menu-list > button.active::after {
+  background: #fff;
 }
-header .menu-list > button.nearby::before {
-  background: url(../images/ico-nearby.svg);
+header .menu-list > button:nth-child(2)::before {
+  mask-image: url(../images/ico-sales-status.svg);
 }
-header .menu-list > button.area::before {
-  background: url(../images/ico-area.svg);
+header .menu-list > button:nth-child(3)::before {
+  mask-image: url(../images/ico-prospect.svg);
+}
+header .menu-list > button:nth-child(4)::before {
+  mask-image: url(../images/ico-nearby.svg);
+}
+header .menu-list > button:nth-child(5)::before {
+  mask-image: url(../images/ico-area.svg);
 }
 header .menu-list > button::after {
-  background: url(../images/ico-next.svg);
+  mask-image: url(../images/ico-next.svg);
   right: 8px;
 }
 header.open {
@@ -616,7 +643,6 @@ header.open .menu-list {
 .poiIco [class*="-shop"] .info-box {
   position: relative;
   width: 76px;
-  min-height: 50px;
   background: #fff;
   padding: 8px 4px;
   border-radius: 4px;
@@ -657,7 +683,11 @@ header.open .menu-list {
   border: 0;
   border-radius: 2px;
 }
-.poiIco .my-shop {
+.poiIco [class*="-shop"]:nth-child(1) {
+  left: 180px;
+  top: 250px;
+}
+.poiIco [class*="-shop"]:nth-child(1) {
   left: 180px;
   top: 250px;
 }
@@ -680,14 +710,10 @@ header.open .menu-list {
 }
 .poiIco .my-shop .name {
   display: block;
-  margin-bottom: 4px;
 }
 .poiIco .my-shop .btn-detail {
   background: #ffeb00;
-}
-.poiIco .high-shop {
-  left: 280px;
-  top: 400px;
+  margin-top: 4px;
 }
 .poiIco .high-shop .info-box {
   border: 1px solid #ed1717;
@@ -698,10 +724,6 @@ header.open .menu-list {
 .poiIco .high-shop .rate {
   font-size: 18px;
   color: #ed1717;
-}
-.poiIco .low-shop {
-  left: 100px;
-  top: 480px;
 }
 .poiIco .low-shop .info-box {
   border: 1px solid #3c6aff;
@@ -730,9 +752,11 @@ header.open .menu-list {
   border-radius: 25px;
   height: 0;
   transition: 0.5s;
+  /* opacity: 0; */
 }
 .store-sales-report.open {
   height: calc(100dvh - 155px);
+  opacity: 1;
 }
 .store-sales-report > .btn-close {
   text-indent: -9999999px;
@@ -751,12 +775,12 @@ header.open .menu-list {
 }
 
 .store-sales-report > .con {
-  height: calc(100% - 64px);
+  height: calc(100% - 84px);
   overflow-y: scroll;
 }
 
 .store-sales-report .con > .smr {
-  padding: 0 24px 24px 24px;
+  padding: 0 80px 24px 24px;
   font-size: 1.6rem;
   line-height: 1.3;
   position: relative;
@@ -1007,7 +1031,13 @@ header.open .menu-list {
   padding: 0;
   margin: 0;
 }
+.store-sales-report.competitor-sales .check-list,
+.store-sales-report.competitor-sales .check-list + .chart-wrap{padding-bottom:6rem;}
 
+.store-sales-report .check-list + .chart-wrap {
+  margin: 0 24px 24px 24px;
+  display: none;
+}
 .store-sales-report .check-list li {
   border-top: 1px solid #eee;
 }
@@ -1084,6 +1114,26 @@ header.open .menu-list {
 }
 .store-sales-report .check-list li input[type="checkbox"]:checked + label.add {
   color: #666;
+}
+.store-sales-report .btn-compare {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+  width: calc(100% - 4rem);
+  transition: 0.3s;
+}
+.store-sales-report .btn-compare[disabled] {
+  background: #d8d8d8;
 }
 .store-sales-report .table-wrap {
   margin-bottom: 20px;
