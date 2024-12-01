@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <!-- 공통 head js,css 정의 -->
+  <head th:replace="~{/fragments/head :: head}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./js/lib/leaflet/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./js/lib/leaflet/control/L.Control.Zoomslider.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./js/lib/leaflet/control/Leaflet.draw/leaflet.draw.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./js/lib/leaflet/control/measure_control/leaflet.measurecontrol.css"
+    />
+
+    <script src="./js/lib/jquery-3.7.1.min.js"></script>
+    <script src="./js/lib/leaflet/leaflet.js"></script>
+    <script src="./js/lib/leaflet/control/L.Control.Zoomslider.js"></script>
+    <script src="./js/lib/leaflet/control/Leaflet.draw/leaflet.draw.js"></script>
+    <script src="./js/lib/leaflet/control/measure_control/leaflet.measurecontrol.min.js"></script>
+    <script src="./js/lib/leaflet/control/L.openmate_measure.js"></script>
+    <script src="./js/lib/leaflet/control/leaflet-arrowheads/src/leaflet-arrowheads.js"></script>
+    <script src="./js/lib/leaflet/control/leaflet-arrowheads/src/leaflet-geometryutil.js"></script>
+    <script src="./js/lib/proj4/proj4.js"></script>
+    <script src="./js/lib/proj4/proj4leaflet.js"></script>
+
+    <script src="./js/lib/common.js"></script>
+    <script src="./js/lib/map.js"></script>
+    <script src="./js/lib/event.js"></script>
+
+    <meta charset="UTF-8" />
+    <title>Li-ON</title>
+
+    <!-- 추가된 meta / css / js -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./css/reboot.css" />
+    <link rel="stylesheet" type="text/css" href="./css/map.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+
+    <script src="./js/lib/chart.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+    <!-- // 추가된 meta / css / js -->
+  </head>
+
+  <!-- 주요 naming
+    ###  메뉴 ###
+    내주변 경쟁 매장 매출현황 - competitor-sales
+    내 주변 경쟁매장 영향권역 - competitor-influence
+    내 매장 주변현황 - store-surroundings
+    개업 시 예상 매출 - expected-sales    
+
+    ### 페이지 내 요소 ###
+    매출기준 선택 - sales-period
+    지도 POI - poiIco
+    리포트 모달 - store-report
+  -->
+
+  <body class="store-surroundings">
+    <!-- Header Area -->
+    <header>
+      <div class="header-inner">
+        <button type="button" class="btn-prev"><span>이전</span></button>
+        <h2>내 매장 주변현황</h2>
+        <button type="button" class="btn-menu"><span>메뉴</span></button>
+        <button type="button" class="btn-close off"><span>닫기</span></button>
+      </div>
+      <div class="menu-list">
+        <p class="tit">내 주변 현황을 한눈에 빠르게 !</p>
+        <button type="button" onclick="location.href='./'">
+          내 주변 경쟁매장 매출현황
+        </button>
+        <button
+          type="button"
+          onclick="location.href='./competitor-influence.html'"
+        >
+          내 주변 경쟁매장 영향권역
+        </button>
+        <button
+          type="button"
+          onclick="location.href='./store-surroundings.html'"
+          class="active"
+        >
+          내 매장 주변현황
+        </button>
+        <button type="button" onclick="location.href='./expected-sales.html'">
+          개업 시 예상매출
+        </button>
+      </div>
+    </header>
+    <!-- // Header Area  -->
+
+    <!-- 매출기준선택  -->
+    <div class="sales-period">
+      <button
+        type="button"
+        class="btn-select btn-modal-open"
+        data-target="sales-period-modal"
+      >
+        2024년 11월
+      </button>
+      <div class="tab">
+        <button type="button">월별</button>
+        <button type="button" class="active">최근 3개월</button>
+        <button type="button">최근 6개월</button>
+        <button type="button">최근 12개월</button>
+      </div>
+    </div>
+    <div class="modal sales-period-modal">
+      <div class="modal-wrap">
+        <div class="modal-head">
+          <h3 class="tit">매출 기준을 선택해주세요</h3>
+        </div>
+        <div class="modal-body">
+          <div class="sales-period-list">
+            <button type="button">2024년 10월 매출기준</button>
+            <button type="button">2024년 9월 매출기준</button>
+            <button type="button">2024년 8월 매출기준</button>
+            <button type="button">2024년 7월 매출기준</button>
+            <button type="button">2024년 6월 매출기준</button>
+            <button type="button">2024년 5월 매출기준</button>
+            <button type="button">2024년 4월 매출기준</button>
+            <button type="button">2024년 3월 매출기준</button>
+            <button type="button">2024년 2월 매출기준</button>
+            <button type="button">2024년 1월 매출기준</button>
+            <button type="button">2023년 12월 매출기준</button>
+            <button type="button">2023년 11월 매출기준</button>
+            <button type="button">3개월(2024년 8월 ~ 10월)매출기준</button>
+            <button type="button">6개월(2024년 5월 ~ 10월)매출기준</button>
+            <button type="button">
+              12개월(2023년 11월 ~ 2024년 10월)매출기준
+            </button>
+          </div>
+        </div>
+        <div class="modal-foot">
+          <button type="button" class="btn btn-default btn-modal-close">
+            취소
+          </button>
+          <button type="button" class="btn btn-primary">확인</button>
+        </div>
+      </div>
+    </div>
+    <!-- // 매출기준선택  -->
+
+    <!-- 내 매장 주변현황 리포트 -->
+    <div class="store-report">
+      <div class="tit">내 매장 주변 현황</div>
+      <button type="button" class="btn-close"></button>
+      <div class="con">
+        <div class="download">자세한 자료를 보시려면 다운받아주세요!</div>
+        <div class="smr">
+          <span class="underline">서대문역 상권</span>내에서 직전월 기준
+          <span class="underline"
+            >평균 매장 매출 증감률 대비12% 높고, 유입인구는 21% 증가</span
+          >
+          했으며, 폐업매장수보다
+          <span class="underline">창업매장 수가 5% 더 많습니다.</span>
+        </div>
+
+        <!-- 기준 시점별 매출 증감률 -->
+        <section>
+          <div class="tit-wrap">
+            <div class="tit">기준 시점별 매출 증감률</div>
+            <div class="unit">(단위 : 만원)</div>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="chart21" style="width: 100%; height: 100%"></canvas>
+          </div>
+          <div class="desc">
+            내 매장 매출 증감율은 직전월 기준 내가 속한 상권내에서 평균 매출
+            증감률 대비 12% 높습니다.
+          </div>
+          <div class="ref">
+            * 비교매장은 내 매장기준 높은 증가율부터 낮은 감소율에 있는
+            경쟁업체로 선정되었습니다.
+          </div>
+        </section>
+
+        <!-- 내가 선택한 경쟁매장 매출변동 비교 -->
+        <section class="list">
+          <div class="tit-wrap">
+            <div class="tit">내가 선택한 경쟁매장 매출변동 비교</div>
+            <div class="smr">
+              내 매장과 비교 하시고 싶은 경쟁 매장 4곳을 선택해주세요.
+            </div>
+          </div>
+          <ul class="check-list">
+            <li class="active">
+              <input type="checkbox" id="21" />
+              <label for="21">
+                <div class="name">AAA매장</div>
+                <div class="add">서울 종로구 자하문로 19길 36</div>
+              </label>
+            </li>
+            <li>
+              <input type="checkbox" id="22" />
+              <label for="22">
+                <div class="name">BBB매장</div>
+                <div class="add">
+                  서울 종로구 자하문로 19길 36 자하문로 19길 36
+                </div>
+              </label>
+            </li>
+            <li>
+              <input type="checkbox" id="23" />
+              <label for="23">
+                <div class="name">AAA매장</div>
+                <div class="add">서울 종로구 자하문로 19길 36</div>
+              </label>
+            </li>
+          </ul>
+          <div class="chart-wrap">
+            <canvas id="chart22" style="width: 100%; height: 100%"></canvas>
+          </div>
+          <button type="button" class="btn btn-primary btn-compare" disabled>
+            경쟁점 비교하기
+          </button>
+        </section>
+
+        <!-- 성별 유입인구 수 -->
+        <section>
+          <div class="tit-wrap">
+            <div class="tit">성별 유입인구 수</div>
+            <div class="unit">(단위 : 명)</div>
+          </div>
+          <div class="chart-wrap">
+            <div class="chart-left">
+              <canvas id="chart23" style="width: 100%; height: 100%"></canvas>
+              <div class="label">24.07</div>
+            </div>
+            <div class="chart-right">
+              <canvas id="chart24" style="width: 100%; height: 100%"></canvas>
+              <div class="label">24.09</div>
+            </div>
+            <div id="chart23-labels"></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr>
+                  <th>구분</th>
+                  <td>24.07</td>
+                  <td>24.09</td>
+                </tr>
+                <tr>
+                  <th>남자</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>여자</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>총인구</th>
+                  <td>2,576</td>
+                  <td>2,576</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            내 매장 주변 유입 인구는 직전월 기준 대비 12% 증가하였습니다.
+          </div>
+        </section>
+
+        <!-- 연령별 유입인구 수 -->
+        <section>
+          <div class="tit-wrap">
+            <div class="tit">연령별 유입인구 수</div>
+            <div class="unit">(단위 : 명)</div>
+          </div>
+          <div class="chart-wrap">
+            <div class="chart-left">
+              <canvas id="chart25" style="width: 100%; height: 100%"></canvas>
+              <div class="label">24.09</div>
+            </div>
+            <div class="chart-right">
+              <canvas id="chart26" style="width: 100%; height: 100%"></canvas>
+              <div class="label">24.09</div>
+            </div>
+            <div id="chart25-labels"></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr>
+                  <th>구분</th>
+                  <td>24.07</td>
+                  <td>24.09</td>
+                </tr>
+                <tr>
+                  <th>10대 남자</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>10대 여자</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>20대 남자</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>20대 여자</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>총인구</th>
+                  <td>2,576</td>
+                  <td>2,576</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            해당지역은 직전월 기준 대비 20대 남성의 유입인구 수가 12%
+            증가하였습니다.
+          </div>
+        </section>
+
+        <!-- 거주인구 수 -->
+        <section>
+          <div class="tit-wrap">
+            <div class="tit">거주인구</div>
+            <div class="unit">(단위 : 명)</div>
+          </div>
+          <div class="status-wrap">
+            <div class="txt">
+              <div class="label">총 거주 인구 수</div>
+              <div class="data">27,143</div>
+            </div>
+            <div class="gender">
+              <div class="gender-bar">
+                <div class="man" style="width: 61%">
+                  <div class="label">남성</div>
+                  61%
+                </div>
+                <div class="woman" style="width: 39%">
+                  <div class="label">여성</div>
+                  39%
+                </div>
+              </div>
+            </div>
+            <div class="age-group">
+              <div class="age10">
+                <div class="label">10대</div>
+                <div class="age-bar" style="height: calc(50% + 22%)">20%</div>
+              </div>
+              <div class="age20">
+                <div class="label">20대</div>
+                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
+              </div>
+              <div class="age30">
+                <div class="label">30대</div>
+                <div class="age-bar" style="height: calc(50% + 12%)">12%</div>
+              </div>
+              <div class="age40">
+                <div class="label">40대</div>
+                <div class="age-bar" style="height: calc(50% + 16%)">16%</div>
+              </div>
+              <div class="age50">
+                <div class="label">50대</div>
+                <div class="age-bar" style="height: calc(50% + 18%)">18%</div>
+              </div>
+              <div class="age60">
+                <div class="label">60대</div>
+                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
+              </div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr>
+                  <th>구분</th>
+                  <td>24.07</td>
+                  <td>24.09</td>
+                </tr>
+                <tr>
+                  <th>10대</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>20대</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>30대</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>40대</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>총인구</th>
+                  <td>2,576</td>
+                  <td>2,576</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">거주인구는 20대, 남성의 인구가 많습니다.</div>
+        </section>
+
+        <!-- 직장인구 수 -->
+        <section>
+          <div class="tit-wrap">
+            <div class="tit">직장인구</div>
+            <div class="unit">(단위 : 명)</div>
+          </div>
+          <div class="status-wrap">
+            <div class="txt">
+              <div class="label">총 거주 인구 수</div>
+              <div class="data">27,143</div>
+            </div>
+            <div class="gender">
+              <div class="gender-bar">
+                <div class="man" style="width: 61%">
+                  <div class="label">남성</div>
+                  61%
+                </div>
+                <div class="woman" style="width: 39%">
+                  <div class="label">여성</div>
+                  39%
+                </div>
+              </div>
+            </div>
+            <div class="age-group">
+              <div class="age10">
+                <div class="label">10대</div>
+                <div class="age-bar" style="height: calc(50% + 22%)">20%</div>
+              </div>
+              <div class="age20">
+                <div class="label">20대</div>
+                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
+              </div>
+              <div class="age30">
+                <div class="label">30대</div>
+                <div class="age-bar" style="height: calc(50% + 12%)">12%</div>
+              </div>
+              <div class="age40">
+                <div class="label">40대</div>
+                <div class="age-bar" style="height: calc(50% + 16%)">16%</div>
+              </div>
+              <div class="age50">
+                <div class="label">50대</div>
+                <div class="age-bar" style="height: calc(50% + 18%)">18%</div>
+              </div>
+              <div class="age60">
+                <div class="label">60대</div>
+                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
+              </div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr>
+                  <th>구분</th>
+                  <td>24.07</td>
+                  <td>24.09</td>
+                </tr>
+                <tr>
+                  <th>10대</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>20대</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>30대</th>
+                  <td>1,000</td>
+                  <td>1,120</td>
+                </tr>
+                <tr>
+                  <th>40대</th>
+                  <td>1,576</td>
+                  <td>1,576</td>
+                </tr>
+                <tr>
+                  <th>총인구</th>
+                  <td>2,576</td>
+                  <td>2,576</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">직장인구는 20대, 여성의 인구가 많습니다.</div>
+        </section>
+
+        <!-- 창업폐업 -->
+        <section class="business-status">
+          <div class="tit-wrap">
+            <div class="tit">창업·폐업</div>
+            <div class="desc">
+              내 매장 주변에서 2024년 9월 기준 <br />신규매장이 3개 창업하였고,
+              2개 폐업하였으며, <br />그중 1곳이 내 가게와 같은 업종입니다.
+            </div>
+            <div class="ref">* 창/폐업은 전월 기준입니다.</div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- 내 매장 주변현황 POI -->
+    <div class="poiIco">
+      <div class="my-shop" style="left: 180px; top: 410px">
+        <i class="ico-poi"></i>
+        <div class="info-box">
+          <span class="name">내 가게</span>
+          <button
+            type="button"
+            class="btn-detail btn-modal-open"
+            data-target="store-report"
+          >
+            상세보기
+          </button>
+        </div>
+      </div>
+      <!-- 매출변동 poi -->
+      <div class="high-shop sales-change" style="left: 240px; top: 335px">
+        <div class="info-box">
+          <span class="name">AAA 매장명</span>
+          <span class="rate">+<strong>25</strong>%</span>
+          <span class="multi"><small>+</small>5</span>
+        </div>
+      </div>
+      <div class="low-shop sales-change" style="left: 100px; top: 480px">
+        <div class="info-box">
+          <span class="name">BBB 매장명</span>
+          <span class="rate">-<strong>25</strong>%</span>
+          <span class="multi"><small>+</small>5</span>
+        </div>
+      </div>
+      <!-- 인구변동 poi -->
+      <div
+        class="population population-change"
+        style="left: 180px; top: 547px; display: none"
+      >
+        <div class="info-box">
+          <span class="smr">전체 인구</span>
+          <span class="data">-2%</span>
+        </div>
+      </div>
+      <!-- 매장변동 poi -->
+      <div
+        class="high-shop store-change"
+        style="left: 280px; top: 400px; display: none"
+      >
+        <div class="info-box">
+          <span class="name">AAA 매장명</span>
+        </div>
+      </div>
+      <div
+        class="low-shop store-change"
+        style="left: 100px; top: 480px; display: none"
+      >
+        <div class="info-box">
+          <span class="name">BBB 매장명</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Area  -->
+    <div class="bottom-area">
+      <button type="button" class="swipe-ctr"></button>
+      <div class="bottom-area-inner">
+        <div class="myshops">
+          <div class="name">신촌매장</div>
+          <div class="name">선능매장</div>
+          <div class="name">삼성매장</div>
+        </div>
+        <ul class="legend sales-change">
+          <li class="my">현위치</li>
+          <li class="high">상승경쟁점</li>
+          <li class="low">하강경쟁점</li>
+        </ul>
+        <ul class="legend population-change" style="display: none">
+          <li class="my">현위치</li>
+        </ul>
+        <ul class="legend store-change" style="display: none">
+          <li class="my">현위치</li>
+          <li class="high">창업매장</li>
+          <li class="low">폐업매장</li>
+        </ul>
+        <div class="smr">· 반경은 내 가게 기준 500m 입니다.</div>
+      </div>
+    </div>
+    <!-- // Button Area  -->
+
+    <!-- 변화 기준 -->
+    <div class="change-criteria">
+      <button
+        type="button"
+        class="change-btn active"
+        data-target="sales-change"
+      >
+        매출변동
+      </button>
+      <button type="button" class="change-btn" data-target="population-change">
+        인구변동
+      </button>
+      <button type="button" class="change-btn" data-target="store-change">
+        매장변동
+      </button>
+    </div>
+    <!-- Map Area -->
+    <div id="map" class="mapArea"></div>
+    <!-- //Map Area -->
+
+    <script>
+      _MAP.init();
+
+      $(function () {
+        //상단메뉴 열기
+        $("header .btn-menu, header .btn-close").click(function () {
+          const isMenu = $(this).hasClass("btn-menu");
+          $("header").toggleClass("open", isMenu);
+          $("header .btn-close").toggleClass("off", !isMenu);
+          $("header .btn-menu").toggleClass("off", isMenu);
+        });
+
+        //모달 열기(공통)
+        $(".btn-modal-open").click(function () {
+          var targetClass = $(this).data("target");
+          $("." + targetClass).addClass("open");
+        });
+
+        //모달 닫기
+        $(".btn-modal-close").click(function () {
+          $(this).closest(".modal").removeClass("open");
+        });
+
+        // 내 매장 리스트 슬라이드
+        $(".myshops").slick({
+          dots: false,
+          slidesToShow: 1,
+          arrows: true,
+        });
+
+        // 하단 touch swipe
+        let startY = 0;
+
+        $(".swipe-ctr").on("touchstart", function (e) {
+          startY = e.originalEvent.touches[0].clientY;
+        });
+
+        $(".swipe-ctr").on("touchmove", function (e) {
+          const currentY = e.originalEvent.touches[0].clientY;
+          const diffY = currentY - startY;
+          const conWrapHeight = $(".swipe-ctr")
+            .siblings(".bottom-area-inner")
+            .height();
+
+          if (diffY < -50) {
+            // 버튼을 일정한 거리 이상 위로 드래그했을 때
+            $(".swipe-ctr")
+              .siblings(".bottom-area-inner")
+              .css({ "max-height": "500px" });
+          } else if (diffY > 50) {
+            // 버튼을 일정한 거리 이상 아래로 드래그했을 때
+            $(".swipe-ctr")
+              .siblings(".bottom-area-inner")
+              .css({ "max-height": "0" });
+          }
+        });
+
+        //리포트 닫기
+        $(".store-report .btn-close").click(function () {
+          $(this).closest(".store-report").removeClass("open");
+          $(".btn-compare").hide();
+        });
+
+        //리포트 : 위치에 따른 경쟁매장 비교하기 버튼 추가/제거
+        $(".con").each(function () {
+          const con = $(this);
+          const btnCompare = con.find(".btn-compare");
+          const checkList = con.find(".list");
+
+          con.on("scroll", function () {
+            const scrollTop = con.scrollTop();
+            const conHeight = con.height() - 100;
+            const scrollHeight = con[0].scrollHeight;
+            const checkListOffset = checkList.position().top;
+            const checkListHeight = checkList.outerHeight() - 230;
+
+            btnCompare.toggle(
+              checkListOffset < conHeight &&
+                checkListOffset + checkListHeight > 0
+            );
+
+            checkList.toggleClass("end", scrollTop + conHeight >= scrollHeight);
+          });
+        });
+
+        //리포트 : 경쟁매장 비교하기 버튼 클릭시 차트와 리스트 토글
+        $(".btn-compare").click(function () {
+          const checkList = $(this).closest("section").find(".check-list");
+          const chartWrap = $(this).closest("section").find(".chart-wrap");
+
+          if ($(this).text() === "다시 비교하기") {
+            checkList.show();
+            chartWrap.hide();
+            $(this).text("경쟁점 비교하기");
+          } else {
+            checkList.hide();
+            chartWrap.show();
+            $(this).text("다시 비교하기");
+          }
+        });
+
+        //리포트 : 경쟁매장 비교하기 버튼 체크 상태에 따라 활성화
+        $("section").each(function () {
+          const checkboxes = $(this).find('.check-list input[type="checkbox"]');
+          const compareButton = $(this).find(".btn-compare");
+          function updateButtonState() {
+            const isChecked = checkboxes.is(":checked");
+            compareButton.prop("disabled", !isChecked);
+          }
+          checkboxes.on("change", updateButtonState);
+        });
+
+        // 변화기준 (우측 플로팅) 메뉴
+        $(".change-btn").click(function () {
+          var targetClass = $(this).data("target");
+          $(".change-btn").removeClass("active");
+          $(this).addClass("active");
+          $(".legend").hide();
+          $(".poiIco > div ").hide();
+          $(".poiIco .my-shop").show();
+          $("." + targetClass).show();
+        });
+      });
+
+      ///////////////////////////// chart /////////////////////////////
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // 기준 시점별 매출 증감률
+        var ctx21 = document.getElementById("chart21").getContext("2d");
+        var chart21 = new Chart(ctx21, {
+          type: "bar",
+          data: {
+            labels: ["내 매장", "AAA", "BBB", "CCC", "DDD"],
+            datasets: [
+              {
+                data: [1000, 1700, 1600, 600, 800],
+                backgroundColor: [
+                  "#0B1D59", // 내 매장 색상
+                  "#d9d9d9",
+                  "#d9d9d9",
+                  "#d9d9d9",
+                  "#d9d9d9",
+                ],
+                borderRadius: {
+                  topLeft: 50,
+                  topRight: 50,
+                  bottomLeft: 0,
+                  bottomRight: 0,
+                },
+                borderSkipped: false,
+                barThickness: 20,
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false, // 라벨 표시 안함
+              },
+            },
+            scales: {
+              x: {
+                beginAtZero: true,
+                grid: {
+                  display: false, // x축 격자 비활성화
+                },
+                ticks: {
+                  font: {
+                    size: 11,
+                    weight: "bold",
+                  },
+                },
+              },
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false, // y축 격자 비활성화
+                },
+                ticks: {
+                  font: {
+                    size: 11,
+                    weight: "bold",
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        // 내가 선택한 경쟁매장 매출변동 비교
+        var ctx22 = document.getElementById("chart22").getContext("2d");
+        var chart22 = new Chart(ctx22, {
+          type: "bar",
+          data: {
+            labels: ["내 매장", "AAA", "BBB", "CCC"],
+            datasets: [
+              {
+                data: [1000, 1700, 1600, 600],
+                backgroundColor: [
+                  "#0B1D59", // 내 매장 색상
+                  "#d9d9d9",
+                  "#d9d9d9",
+                  "#d9d9d9",
+                ],
+                borderRadius: {
+                  topLeft: 50,
+                  topRight: 50,
+                  bottomLeft: 0,
+                  bottomRight: 0,
+                },
+                borderSkipped: false,
+                barThickness: 20,
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false, // 라벨 표시 안함
+              },
+            },
+            scales: {
+              x: {
+                beginAtZero: true,
+                grid: {
+                  display: false, // x축 격자 비활성화
+                },
+                ticks: {
+                  font: {
+                    size: 11,
+                    weight: "bold",
+                  },
+                },
+              },
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false, // y축 격자 비활성화
+                },
+                ticks: {
+                  font: {
+                    size: 11,
+                    weight: "bold",
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        // 성별 유입인구 수 (24.07)
+        var ctx23 = document.getElementById("chart23").getContext("2d");
+
+        var chart23 = new Chart(ctx23, {
+          type: "pie",
+          data: {
+            labels: ["남자", "여자"],
+            datasets: [
+              {
+                data: [39, 61],
+                backgroundColor: ["#5BA7FF", "#FF7C7C"],
+                borderWidth: 0, // 경계선 제거
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false, // 라벨 표시
+              },
+            },
+          },
+          plugins: [
+            {
+              id: "customLabels",
+              afterDatasetDraw(chart) {
+                const { ctx, data } = chart;
+                const dataset = data.datasets[0];
+                const meta = chart.getDatasetMeta(0);
+                meta.data.forEach((element, index) => {
+                  const { x, y } = element.tooltipPosition();
+                  const value = dataset.data[index];
+                  ctx.fillStyle = "#fff";
+                  ctx.font = "14px Arial";
+                  ctx.textAlign = "center";
+                  ctx.fillText(value + "%", x, y - 5);
+                });
+              },
+            },
+          ],
+        });
+
+        // 성별 유입인구 수 (24.09)
+        var ctx24 = document.getElementById("chart24").getContext("2d");
+        var chart24 = new Chart(ctx24, {
+          type: "pie",
+          data: {
+            labels: ["남자", "여자"],
+            datasets: [
+              {
+                data: [41, 59],
+                backgroundColor: ["#5BA7FF", "#FF7C7C"],
+                borderWidth: 0, // 경계선 제거
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false, // 라벨 표시
+              },
+            },
+          },
+          plugins: [
+            {
+              id: "customLabels",
+              afterDatasetDraw(chart) {
+                const { ctx, data } = chart;
+                const dataset = data.datasets[0];
+                const meta = chart.getDatasetMeta(0);
+                meta.data.forEach((element, index) => {
+                  const { x, y } = element.tooltipPosition();
+                  const value = dataset.data[index];
+                  ctx.fillStyle = "#fff";
+                  ctx.font = "14px Arial";
+                  ctx.textAlign = "center";
+                  ctx.fillText(value + "%", x, y - 5); // 값 표시 (섹션 위)
+                });
+              },
+            },
+          ],
+        });
+
+        // 연령별 유입인구 수 (24.07)
+        var ctx25 = document.getElementById("chart25").getContext("2d");
+        var chart25 = new Chart(ctx25, {
+          type: "pie",
+          data: {
+            labels: ["10대", "20대", "30대", "40대", "50대", "60대 이상"],
+            datasets: [
+              {
+                data: [12, 12, 12, 12, 22, 30],
+                backgroundColor: [
+                  "#FF7C7C",
+                  "#FFAA5B",
+                  "#FFDC5F",
+                  "#6FD7B8",
+                  "#5BA7FF",
+                  "#B584FA",
+                ],
+                borderWidth: 0, // 경계선 제거
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false, // 라벨 표시
+              },
+            },
+          },
+          plugins: [
+            {
+              id: "customLabels",
+              afterDatasetDraw(chart) {
+                const { ctx, data } = chart;
+                const dataset = data.datasets[0];
+                const meta = chart.getDatasetMeta(0);
+                meta.data.forEach((element, index) => {
+                  const { x, y } = element.tooltipPosition();
+                  const value = dataset.data[index];
+                  ctx.fillStyle = "#fff";
+                  ctx.font = "14px Arial";
+                  ctx.textAlign = "center";
+                  ctx.fillText(value + "%", x, y + 5); // 값 표시 (섹션 위)
+                });
+              },
+            },
+          ],
+        });
+
+        // 연령별 유입인구 수 (24.09)
+        var ctx26 = document.getElementById("chart26").getContext("2d");
+        var chart26 = new Chart(ctx26, {
+          type: "pie",
+          data: {
+            labels: ["10대", "20대", "30대", "40대", "50대", "60대 이상"],
+            datasets: [
+              {
+                data: [12, 12, 12, 12, 22, 30],
+                backgroundColor: [
+                  "#FF7C7C",
+                  "#FFAA5B",
+                  "#FFDC5F",
+                  "#6FD7B8",
+                  "#5BA7FF",
+                  "#B584FA",
+                ],
+                borderWidth: 0, // 경계선 제거
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false, // 라벨 표시
+              },
+            },
+          },
+          plugins: [
+            {
+              id: "customLabels",
+              afterDatasetDraw(chart) {
+                const { ctx, data } = chart;
+                const dataset = data.datasets[0];
+                const meta = chart.getDatasetMeta(0);
+                meta.data.forEach((element, index) => {
+                  const { x, y } = element.tooltipPosition();
+                  const value = dataset.data[index];
+                  ctx.fillStyle = "#fff";
+                  ctx.font = "14px Arial";
+                  ctx.textAlign = "center";
+                  ctx.fillText(value + "%", x, y + 5); // 값 표시 (섹션 위)
+                });
+              },
+            },
+          ],
+        });
+
+        // 차트가 렌더링된 후 라벨 값을 가져와서 div에 추가
+        chart25.options.plugins.legend.onClick = function (e, legendItem) {
+          var labelsDiv = document.getElementById("chart25-labels");
+          labelsDiv.innerHTML = ""; // 기존 내용 지우기
+          chart25.data.labels.forEach(function (label) {
+            var labelElement = document.createElement("li");
+            labelElement.textContent = label;
+            labelsDiv.appendChild(labelElement);
+          });
+        };
+
+        // 초기 라벨 값 설정
+        var labelsDiv = document.getElementById("chart25-labels");
+        chart25.data.labels.forEach(function (label) {
+          var labelElement = document.createElement("li");
+          labelElement.textContent = label;
+          labelsDiv.appendChild(labelElement);
+        });
+
+        // 차트가 렌더링된 후 라벨 값을 가져와서 div에 추가
+        chart23.options.plugins.legend.onClick = function (e, legendItem) {
+          var labelsDiv = document.getElementById("chart23-labels");
+          labelsDiv.innerHTML = ""; // 기존 내용 지우기
+          chart23.data.labels.forEach(function (label) {
+            var labelElement = document.createElement("li");
+            labelElement.textContent = label;
+            labelsDiv.appendChild(labelElement);
+          });
+        };
+
+        // 초기 라벨 값 설정
+        var labelsDiv = document.getElementById("chart23-labels");
+        chart23.data.labels.forEach(function (label) {
+          var labelElement = document.createElement("li");
+          labelElement.textContent = label;
+          labelsDiv.appendChild(labelElement);
+        });
+      });
+    </script>
+  </body>
+</html>

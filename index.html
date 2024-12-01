@@ -36,66 +36,95 @@
 
     <script src="./js/lib/common.js"></script>
     <script src="./js/lib/map.js"></script>
-    <script src="./js/lib/event.js"></script>
+    <!-- <script src="./js/lib/event.js"></script> -->
 
     <meta charset="UTF-8" />
-    <title>사장님플러스</title>
+    <title>Li-ON</title>
 
     <!-- 추가된 meta / css / js -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./css/reboot.css" />
     <link rel="stylesheet" type="text/css" href="./css/map.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
 
     <script src="./js/lib/chart.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
     <!-- // 추가된 meta / css / js -->
   </head>
 
-  <!-- 
-    주요 naming
+  <!-- 주요 naming
+    ###  메뉴 ###
     내주변 경쟁 매장 매출현황 - competitor-sales
     내 주변 경쟁매장 영향권역 - competitor-influence
     내 매장 주변현황 - store-surroundings
-    개업 시 예상 매출 - expected-sales
+    개업 시 예상 매출 - expected-sales    
+
+    ### 페이지 내 요소 ###
+    매출기준 선택 - sales-period
+    지도 POI - poiIco
+    리포트 모달 - store-report
   -->
 
-  <body>
+  <body class="competitor-sales">
     <!-- Header Area -->
     <header>
       <div class="header-inner">
-        <button type="button" class="btn-prev off"><span>이전</span></button>
+        <button type="button" class="btn-prev"><span>이전</span></button>
         <h2>내 주변 경쟁매장 매출 현황</h2>
         <button type="button" class="btn-menu"><span>메뉴</span></button>
         <button type="button" class="btn-close off"><span>닫기</span></button>
       </div>
       <div class="menu-list">
         <p class="tit">내 주변 현황을 한눈에 빠르게 !</p>
-        <button type="button" id="competitor-sales">
+        <button type="button" onclick="location.href='./'" class="active">
           내 주변 경쟁매장 매출현황
         </button>
-        <button type="button" id="competitor-influence">
+        <button
+          type="button"
+          onclick="location.href='./competitor-influence.html'"
+        >
           내 주변 경쟁매장 영향권역
         </button>
-        <button type="button" id="store-surroundings">내 매장 주변현황</button>
-        <button type="button" id="expected-sales">개업 시 예상매출</button>
+        <button
+          type="button"
+          onclick="location.href='./store-surroundings.html'"
+        >
+          내 매장 주변현황
+        </button>
+        <button type="button" onclick="location.href='./expected-sales.html'">
+          개업 시 예상매출
+        </button>
       </div>
     </header>
     <!-- // Header Area  -->
 
     <!-- 매출기준선택  -->
     <div class="sales-period">
-      <button type="button" class="btn-select">2024년 11월</button>
+      <button
+        type="button"
+        class="btn-select btn-modal-open"
+        data-target="sales-period-modal"
+      >
+        2024년 11월
+      </button>
       <div class="tab">
-        <button type="button" class="active">월별</button>
-        <button type="button">3개월</button>
-        <button type="button">6개월</button>
-        <button type="button">12개월</button>
+        <button type="button">월별</button>
+        <button type="button" class="active">최근 3개월</button>
+        <button type="button">최근 6개월</button>
+        <button type="button">최근 12개월</button>
       </div>
     </div>
     <div class="modal sales-period-modal">
       <div class="modal-wrap">
         <div class="modal-head">
           <h3 class="tit">매출 기준을 선택해주세요</h3>
-          <button type="button" class="btn-close">닫기</button>
         </div>
         <div class="modal-body">
           <div class="sales-period-list">
@@ -104,7 +133,7 @@
             <button type="button">2024년 8월 매출기준</button>
             <button type="button">2024년 7월 매출기준</button>
             <button type="button">2024년 6월 매출기준</button>
-            <button type="button">2024년 5월 매출기준</button>
+            <button type="button" class="active">2024년 5월 매출기준</button>
             <button type="button">2024년 4월 매출기준</button>
             <button type="button">2024년 3월 매출기준</button>
             <button type="button">2024년 2월 매출기준</button>
@@ -118,41 +147,22 @@
             </button>
           </div>
         </div>
+        <div class="modal-foot">
+          <button type="button" class="btn btn-default btn-modal-close">
+            취소
+          </button>
+          <button type="button" class="btn btn-primary">확인</button>
+        </div>
       </div>
     </div>
     <!-- // 매출기준선택  -->
 
-    <!-- bottom Area  -->
-    <div class="bottom-area">
-      <button type="button" class="swipe-ctr"></button>
-      <div class="bottom-area-inner">
-        <div class="myshops">
-          <button type="button" class="btn-prev">이전</button>
-          <span class="name">신촌매장</span>
-          <button type="button" class="btn-next">다음</button>
-        </div>
-        <ul class="legend">
-          <li class="my">내 매장</li>
-          <li class="bottom">하위경쟁점</li>
-          <li class="top">상위경쟁정</li>
-        </ul>
-        <div class="smr">· 반경은 내 가게 기준 500m 입니다.</div>
-      </div>
-    </div>
-    <!-- // Button Area  -->
-
-    <!-- 지도 내 영역 마킹 : flow 확인을 위한 코��� -->
-    <!-- <div id="markinMap">
-      <div class="mkAreaMark"></div>
-      <div class="smAreaMark"></div>
-    </div> -->
-
-    <!-- /////////////////////////  리포트 //////////////////////////-->
     <!-- 내주변 경쟁 매장 매출현황 리포트 -->
-    <div class="competitor-sales store-sales-report">
+    <div class="store-report">
       <div class="tit">내주변 경쟁 매장 매출현황</div>
       <button type="button" class="btn-close"></button>
       <div class="con">
+        <div class="download">자세한 자료를 보시려면 다운받아주세요!</div>
         <div class="smr">
           내 매장 매출은 <span class="underline">2024년 8월 매출 기준</span>
           <br />
@@ -209,469 +219,26 @@
           <div class="chart-wrap">
             <canvas id="chart12" style="width: 100%; height: 100%"></canvas>
           </div>
-          <button type="button" class="btn-compare" disabled>
+          <button type="button" class="btn btn-primary btn-compare" disabled>
             경쟁점 비교하기
           </button>
         </section>
       </div>
     </div>
 
-    <!-- 내 매장 주변현황 리포트 -->
-    <div class="store-surroundings store-sales-report">
-      <div class="tit">내 매장 주변 현황</div>
-      <button type="button" class="btn-close"></button>
-      <div class="con">
-        <div class="smr">
-          <span class="underline">서대문역 상권</span>내에서 직전월 기준
-          <span class="underline"
-            >평균 매장 매출 증감률 대비12% 높고, 유입인구는 21% 증가</span
-          >
-          했으며, 폐업매장수보다
-          <span class="underline">창업매장 수가 5% 더 많습니다.</span>
-        </div>
-
-        <!-- 기준 시점별 매출 증감률 -->
-        <section>
-          <div class="tit-wrap">
-            <div class="tit">기준 시점별 매출 증감률</div>
-            <div class="unit">(단위 : 만원)</div>
-          </div>
-          <div class="chart-wrap">
-            <canvas id="chart21" style="width: 100%; height: 100%"></canvas>
-          </div>
-          <div class="desc">
-            내 매장 매출 증감율은 직전월 기준 내가 속한 상권내에서 평균 매출
-            증감률 대비 12% 높습니다.
-          </div>
-          <div class="ref">
-            * 비교매장은 내 매장기준 높은 증가율부터 낮은 감소율에 있는
-            경쟁업체로 선정되었습니다.
-          </div>
-        </section>
-
-        <!-- 내가 선택한 경쟁매장 매출변동 비교 -->
-        <section class="list">
-          <div class="tit-wrap">
-            <div class="tit">내가 선택한 경쟁매장 매출변동 비교</div>
-            <div class="smr">
-              내 매장과 비교 하시고 싶은 경쟁 매장 4곳을 선택해주세요.
-            </div>
-          </div>
-          <ul class="check-list">
-            <li class="active">
-              <input type="checkbox" id="21" />
-              <label for="21">
-                <div class="name">AAA매장</div>
-                <div class="add">서울 종로구 자하문로 19길 36</div>
-              </label>
-            </li>
-            <li>
-              <input type="checkbox" id="22" />
-              <label for="22">
-                <div class="name">BBB매장</div>
-                <div class="add">
-                  서울 종로구 자하문로 19길 36 자하문로 19길 36
-                </div>
-              </label>
-            </li>
-            <li>
-              <input type="checkbox" id="23" />
-              <label for="23">
-                <div class="name">AAA매장</div>
-                <div class="add">서울 종로구 자하문로 19길 36</div>
-              </label>
-            </li>
-          </ul>
-          <div class="chart-wrap">
-            <canvas id="chart22" style="width: 100%; height: 100%"></canvas>
-          </div>
-          <button type="button" class="btn-compare" disabled>
-            경쟁점 비교하기
-          </button>
-        </section>
-
-        <!-- 성별 유입인구 수 -->
-        <section>
-          <div class="tit-wrap">
-            <div class="tit">성별 유입인구 수</div>
-            <div class="unit">(단위 : 명)</div>
-          </div>
-          <div class="chart-wrap">
-            <div class="chart-left">
-              <canvas id="chart23" style="width: 100%; height: 100%"></canvas>
-              <div class="label">24.07</div>
-            </div>
-            <div class="chart-right">
-              <canvas id="chart03" style="width: 100%; height: 100%"></canvas>
-              <div class="label">24.09</div>
-            </div>
-            <div id="chart23-labels"></div>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <tbody>
-                <tr>
-                  <th>구분</th>
-                  <td>24.07</td>
-                  <td>24.09</td>
-                </tr>
-                <tr>
-                  <th>남자</th>
-                  <td>1,000</td>
-                  <td>1,120</td>
-                </tr>
-                <tr>
-                  <th>여자</th>
-                  <td>1,576</td>
-                  <td>1,576</td>
-                </tr>
-                <tr>
-                  <th>총인구</th>
-                  <td>2,576</td>
-                  <td>2,576</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="desc">
-            내 매장 주변 유입 인구는 직전월 기준 대비 12% 증가하였습니다.
-          </div>
-        </section>
-
-        <!-- 연령별 유입인구 수 -->
-        <section>
-          <div class="tit-wrap">
-            <div class="tit">연령별 유입인구 수</div>
-            <div class="unit">(단위 : 명)</div>
-          </div>
-          <div class="chart-wrap">
-            <div class="chart-left">
-              <canvas id="chart04" style="width: 100%; height: 100%"></canvas>
-              <div class="label">24.09</div>
-            </div>
-            <div class="chart-right">
-              <canvas id="chart05" style="width: 100%; height: 100%"></canvas>
-              <div class="label">24.09</div>
-            </div>
-            <div id="chart04-labels"></div>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <tbody>
-                <tr>
-                  <th>구분</th>
-                  <td>24.07</td>
-                  <td>24.09</td>
-                </tr>
-                <tr>
-                  <th>10대 남자</th>
-                  <td>1,000</td>
-                  <td>1,120</td>
-                </tr>
-                <tr>
-                  <th>10대 여자</th>
-                  <td>1,576</td>
-                  <td>1,576</td>
-                </tr>
-                <tr>
-                  <th>20대 남자</th>
-                  <td>1,000</td>
-                  <td>1,120</td>
-                </tr>
-                <tr>
-                  <th>20대 여자</th>
-                  <td>1,576</td>
-                  <td>1,576</td>
-                </tr>
-                <tr>
-                  <th>총인구</th>
-                  <td>2,576</td>
-                  <td>2,576</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="desc">
-            해당지역은 직전월 기준 대비 20대 남성의 유입인구 수가 12%
-            증가하였습니다.
-          </div>
-        </section>
-
-        <!-- 거주인구 수 -->
-        <section>
-          <div class="tit-wrap">
-            <div class="tit">거주인구</div>
-            <div class="unit">(단위 : 명)</div>
-          </div>
-          <div class="status-wrap">
-            <div class="txt">
-              <div class="label">총 거주 인구 수</div>
-              <div class="data">27,143</div>
-            </div>
-            <div class="gender">
-              <div class="gender-bar">
-                <div class="man" style="width: 61%">
-                  <div class="label">남성</div>
-                  61%
-                </div>
-                <div class="woman" style="width: 39%">
-                  <div class="label">여성</div>
-                  39%
-                </div>
-              </div>
-            </div>
-            <div class="age-group">
-              <div class="age10">
-                <div class="label">10대</div>
-                <div class="age-bar" style="height: calc(50% + 22%)">20%</div>
-              </div>
-              <div class="age20">
-                <div class="label">20대</div>
-                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
-              </div>
-              <div class="age30">
-                <div class="label">30대</div>
-                <div class="age-bar" style="height: calc(50% + 12%)">12%</div>
-              </div>
-              <div class="age40">
-                <div class="label">40대</div>
-                <div class="age-bar" style="height: calc(50% + 16%)">16%</div>
-              </div>
-              <div class="age50">
-                <div class="label">50대</div>
-                <div class="age-bar" style="height: calc(50% + 18%)">18%</div>
-              </div>
-              <div class="age60">
-                <div class="label">60대</div>
-                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
-              </div>
-            </div>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <tbody>
-                <tr>
-                  <th>구분</th>
-                  <td>24.07</td>
-                  <td>24.09</td>
-                </tr>
-                <tr>
-                  <th>10대</th>
-                  <td>1,000</td>
-                  <td>1,120</td>
-                </tr>
-                <tr>
-                  <th>20대</th>
-                  <td>1,576</td>
-                  <td>1,576</td>
-                </tr>
-                <tr>
-                  <th>30대</th>
-                  <td>1,000</td>
-                  <td>1,120</td>
-                </tr>
-                <tr>
-                  <th>40대</th>
-                  <td>1,576</td>
-                  <td>1,576</td>
-                </tr>
-                <tr>
-                  <th>총인구</th>
-                  <td>2,576</td>
-                  <td>2,576</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="desc">거주인구는 20대, 남성의 인구가 많습니다.</div>
-        </section>
-
-        <!-- 직장인구 수 -->
-        <section>
-          <div class="tit-wrap">
-            <div class="tit">직장인구</div>
-            <div class="unit">(단위 : 명)</div>
-          </div>
-          <div class="status-wrap">
-            <div class="txt">
-              <div class="label">총 거주 인구 수</div>
-              <div class="data">27,143</div>
-            </div>
-            <div class="gender">
-              <div class="gender-bar">
-                <div class="man" style="width: 61%">
-                  <div class="label">남성</div>
-                  61%
-                </div>
-                <div class="woman" style="width: 39%">
-                  <div class="label">여성</div>
-                  39%
-                </div>
-              </div>
-            </div>
-            <div class="age-group">
-              <div class="age10">
-                <div class="label">10대</div>
-                <div class="age-bar" style="height: calc(50% + 22%)">20%</div>
-              </div>
-              <div class="age20">
-                <div class="label">20대</div>
-                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
-              </div>
-              <div class="age30">
-                <div class="label">30대</div>
-                <div class="age-bar" style="height: calc(50% + 12%)">12%</div>
-              </div>
-              <div class="age40">
-                <div class="label">40대</div>
-                <div class="age-bar" style="height: calc(50% + 16%)">16%</div>
-              </div>
-              <div class="age50">
-                <div class="label">50대</div>
-                <div class="age-bar" style="height: calc(50% + 18%)">18%</div>
-              </div>
-              <div class="age60">
-                <div class="label">60대</div>
-                <div class="age-bar" style="height: calc(50% + 30%)">30%</div>
-              </div>
-            </div>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <tbody>
-                <tr>
-                  <th>구분</th>
-                  <td>24.07</td>
-                  <td>24.09</td>
-                </tr>
-                <tr>
-                  <th>10대</th>
-                  <td>1,000</td>
-                  <td>1,120</td>
-                </tr>
-                <tr>
-                  <th>20대</th>
-                  <td>1,576</td>
-                  <td>1,576</td>
-                </tr>
-                <tr>
-                  <th>30대</th>
-                  <td>1,000</td>
-                  <td>1,120</td>
-                </tr>
-                <tr>
-                  <th>40대</th>
-                  <td>1,576</td>
-                  <td>1,576</td>
-                </tr>
-                <tr>
-                  <th>총인구</th>
-                  <td>2,576</td>
-                  <td>2,576</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="desc">직장인구는 20대, 여성의 인구가 많습니다.</div>
-        </section>
-
-        <!-- 창업폐업 -->
-        <section class="business-status">
-          <div class="tit-wrap">
-            <div class="tit">창업·폐업</div>
-            <div class="desc">
-              내 매장 주변에서 2024년 9월 기준 <br />신규매장이 3개 창업하였고,
-              2개 폐업하였으며, <br />그중 1곳이 내 가게와 같은 업종입니다.
-            </div>
-            <div class="ref">* 창/폐업은 전월 기준입니다.</div>
-          </div>
-        </section>
-      </div>
-    </div>
-
-    <!-- 개업 시 예상 매출 리포트 -->
-    <div class="expected-sales store-sales-report">
-      <div class="tit">개업 시 예상매출</div>
-      <button type="button" class="btn-close"></button>
-      <div class="con">
-        <div class="smr">
-          <span class="underline">서대문역</span>의
-          <span class="underline">분식업종</span>은 내 매장이 위치한 지역과
-          비교한 결과 직전월 기준
-          <span class="underline">평균 매출액이 21% 낮습니다.</span>
-        </div>
-
-        <!-- 기준 시점별 분식업종 매출 -->
-        <section>
-          <div class="tit-wrap">
-            <div class="tit">기준 시점별 분식업종 매출</div>
-            <div class="unit">(단위 : 만원)</div>
-          </div>
-          <div class="chart-wrap">
-            <canvas id="chart31" style="width: 100%; height: 100%"></canvas>
-          </div>
-          <div class="desc">
-            내 매장 매출 증감율은 직전월 기준 내가 속한 상권내에서 평균매출
-            증감률 대비 12% 높습니다.
-          </div>
-          <div class="ref">
-            * 비교매장은 내 매장기준 높은 증가율부터 낮은 감소율에 있는
-            경쟁업체로 선정되었습니다.
-          </div>
-        </section>
-
-        <!-- 내가 선택한 지역의 경쟁 매장 기준 매출 -->
-        <section class="list">
-          <div class="tit-wrap">
-            <div class="tit">내가 선택한 지역의 경쟁 매장 기준 매출</div>
-            <div class="smr">
-              비교해 보시고 싶은 경쟁 매장을 5곳을 선택해주세요
-            </div>
-          </div>
-          <ul class="check-list">
-            <li class="active">
-              <input type="checkbox" id="1" />
-              <label for="1">
-                <div class="name">AAA매장</div>
-                <div class="add">서울 종로구 자하문로 19길 36</div>
-              </label>
-            </li>
-            <li>
-              <input type="checkbox" id="2" />
-              <label for="2">
-                <div class="name">BBB매장</div>
-                <div class="add">
-                  서울 종로구 자하문로 19길 36 자하문로 19길 36
-                </div>
-              </label>
-            </li>
-            <li>
-              <input type="checkbox" id="3" />
-              <label for="3">
-                <div class="name">AAA매장</div>
-                <div class="add">서울 종로구 자하문로 19길 36</div>
-              </label>
-            </li>
-          </ul>
-          <div class="chart-wrap">
-            <canvas id="chart32" style="width: 100%; height: 100%"></canvas>
-          </div>
-          <button type="button" class="btn-compare" disabled>
-            경쟁점 비교하기
-          </button>
-        </section>
-      </div>
-    </div>
-    <!-- /////////////////////////  리포트 ////////////////////////// -->
-
-    <!-- ////////////////////////  POI 영역 ///////////////////////// -->
     <!-- 내주변 경쟁 매장 매출현황 POI -->
-    <div class="competitor-sales poiIco">
+    <div class="poiIco">
       <div class="my-shop" style="left: 180px; top: 250px">
         <i class="ico-poi"></i>
         <div class="info-box">
           <span class="name">내 가게</span>
-          <button type="button" class="btn-detail">상세보기</button>
+          <button
+            type="button"
+            class="btn-detail btn-modal-open"
+            data-target="store-report"
+          >
+            상세보기
+          </button>
         </div>
       </div>
       <div class="high-shop" style="left: 280px; top: 400px">
@@ -690,79 +257,24 @@
       </div>
     </div>
 
-    <!-- 내 주변 경쟁매장 영향권역 POI -->
-    <div class="competitor-influence poiIco" style="display: none">
-      <div class="my-shop" style="left: 180px; top: 250px">
-        <i class="ico-poi"></i>
-        <div class="info-box">
-          <span class="name">내 가게</span>
+    <!-- Bottom Area  -->
+    <div class="bottom-area">
+      <button type="button" class="swipe-ctr"></button>
+      <div class="bottom-area-inner">
+        <div class="myshops">
+          <div class="name">신촌매장</div>
+          <div class="name">선능매장</div>
+          <div class="name">삼성매장</div>
         </div>
-      </div>
-      <div class="low-shop" style="left: 280px; top: 400px">
-        <div class="info-box">
-          <span class="name">AAA 매장명</span>
-        </div>
-      </div>
-      <div class="low-shop" style="left: 100px; top: 480px">
-        <div class="info-box">
-          <span class="name">BBB 매장명</span>
-        </div>
+        <ul class="legend">
+          <li class="my">내 매장</li>
+          <li class="high">상위경쟁점</li>
+          <li class="low">하위경쟁점</li>
+        </ul>
+        <div class="smr">· 반경은 내 가게 기준 500m 입니다.</div>
       </div>
     </div>
-
-    <!-- 내 매장 주변현황 POI -->
-    <div class="store-surroundings poiIco" style="display: none">
-      <div class="my-shop" style="left: 180px; top: 250px">
-        <i class="ico-poi"></i>
-        <div class="info-box">
-          <span class="name">내 가게</span>
-          <button type="button" class="btn-detail">상세보기</button>
-        </div>
-      </div>
-      <div class="high-shop" style="left: 280px; top: 400px">
-        <div class="info-box">
-          <span class="name">AAA 매장명</span>
-          <span class="rate">+<strong>25</strong>%</span>
-          <span class="multi"><small>+</small>5</span>
-        </div>
-      </div>
-      <div class="low-shop" style="left: 100px; top: 480px">
-        <div class="info-box">
-          <span class="name">BBB 매장명</span>
-          <span class="rate">-<strong>25</strong>%</span>
-          <span class="multi"><small>+</small>5</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 개업 시 예상 매출 POI -->
-    <div class="expected-sales poiIco" style="display: none">
-      <div class="my-shop" style="left: 180px; top: 250px">
-        <i class="ico-poi"></i>
-        <div class="info-box">
-          <span class="name">서대문역</span>
-          <button type="button" class="btn-detail">상세보기</button>
-        </div>
-      </div>
-      <div class="low-shop" style="left: 280px; top: 400px">
-        <div class="info-box">
-          <span class="name">AAA 매장명</span>
-          <span class="multi"><small>+</small>5</span>
-        </div>
-      </div>
-      <div class="low-shop" style="left: 100px; top: 480px">
-        <div class="info-box">
-          <span class="name">BBB 매장명</span>
-          <span class="multi"><small>+</small>5</span>
-        </div>
-      </div>
-      <div class="low-shop" style="left: 250px; top: 350px">
-        <div class="info-box">
-          <span class="name">ccc 매장명</span>
-        </div>
-      </div>
-    </div>
-    <!-- ////////////////////////  POI 영역 ///////////////////////// -->
+    <!-- // Button Area  -->
 
     <!-- Map Area -->
     <div id="map" class="mapArea"></div>
@@ -773,106 +285,31 @@
 
       $(function () {
         //상단메뉴 열기
-        $("header .btn-menu").click(function () {
-          $("header").addClass("open");
-          $("header .btn-close").removeClass("off");
-          $("header .btn-menu").addClass("off");
-        });
-        //상단메뉴 닫기
-        $("header .btn-close").click(function () {
-          $("header").removeClass("open");
-          $("header .btn-close").addClass("off");
-          $("header .btn-menu").removeClass("off");
-        });
-        //상단메뉴 링크
-        $(".menu-list button").click(function () {
-          $(".menu-list button").removeClass("active");
-          $(this).addClass("active");
-          $(".sales-period").show();
-          $("header").removeClass("open");
-          $("header .btn-close").addClass("off");
-          $("header .btn-menu").removeClass("off");
-          $(".store-sales-report, .poiIco").css("display", "none");
-          var targetClass = $(this).attr("id");
-          var targetMenu = $(this).html();
-          $("." + targetClass).css("display", "block");
-          $(".header-inner h2").html(targetMenu);
-
-          // 토스트 메시지 표시
-          if (targetClass === "competitor-influence") {
-            $(".sales-period").hide();
-            showToast(
-              "지도에서 경쟁 매장을 선택하시면 <br>경쟁매장의 영향 권역을 보실 수 있습니다."
-            );
-          }
+        $("header .btn-menu, header .btn-close").click(function () {
+          const isMenu = $(this).hasClass("btn-menu");
+          $("header").toggleClass("open", isMenu);
+          $("header .btn-close").toggleClass("off", !isMenu);
+          $("header .btn-menu").toggleClass("off", isMenu);
         });
 
-        //매출기준리스트 모달 열기
-        $(".sales-period .btn-select").click(function () {
-          $(".sales-period-modal").addClass("open");
+        //모달 열기(공통)
+        $(".btn-modal-open").click(function () {
+          var targetClass = $(this).data("target");
+          $("." + targetClass).addClass("open");
         });
-        // 모달 닫기
-        $(".modal .btn-close").click(function () {
+
+        //모달 닫기
+        $(".btn-modal-close").click(function () {
           $(this).closest(".modal").removeClass("open");
         });
 
-        //내주변 경쟁 매장 매출 현황 열기
-        $(".btn-detail").click(function () {
-          $(".store-sales-report").addClass("open");
-        });
-        //내주변 경쟁 매장 매출 현황 닫기
-        $(".store-sales-report .btn-close").click(function () {
-          $(".store-sales-report").removeClass("open");
+        // 내 매장 리스트 슬라이드
+        $(".myshops").slick({
+          dots: false,
+          slidesToShow: 1,
+          arrows: true,
         });
 
-        // 경쟁매장 비교하기 버튼
-        $(".con").each(function () {
-          const con = $(this); // 현재 .con 요소
-          const btnCompare = con.find(".btn-compare"); // 해당 .con의 버튼
-          const checkList = con.find(".list"); // 해당 .con의 체크리스트
-
-          // 스크롤 이벤트 처리
-          con.on("scroll", function () {
-            const scrollTop = con.scrollTop(); // 현재 스크롤 위치
-            const conHeight = con.height(); // .con의 높이
-            const scrollHeight = con[0].scrollHeight; // 스크롤 전체 높이
-            const checkListOffset = checkList.position().top; // .con 내부에서의 상대적인 위치
-            const checkListHeight = checkList.outerHeight(); // .check-list의 높이
-
-            // .check-list가 스크롤 영역 안에 있는 경우에만 버튼 표시
-            if (
-              checkListOffset < conHeight &&
-              checkListOffset + checkListHeight > 0
-            ) {
-              btnCompare.fadeIn();
-            } else {
-              btnCompare.fadeOut();
-            }
-
-            // 스크롤이 끝까지 내려갔는지 확인
-            if (scrollTop + conHeight >= scrollHeight) {
-              checkList.addClass("end"); // 스크롤이 끝까지 내려가면 end 클래스 추가
-            } else {
-              checkList.removeClass("end"); // 스크롤이 끝이 아니면 end 클래스 제거
-            }
-          });
-        });
-
-        //경쟁점 비교하기
-        $(".btn-compare").click(function () {
-          const checkList = $(this).closest("section").find(".check-list");
-          const chartWrap = $(this).closest("section").find(".chart-wrap");
-
-          if ($(this).text() === "다시 비교하기") {
-            checkList.show();
-            chartWrap.hide();
-            $(this).text("경쟁점 비교하기");
-          } else {
-            checkList.hide();
-            chartWrap.show();
-            $(this).text("다시 비교하기");
-          }
-        });
         // 하단 touch swipe
         let startY = 0;
 
@@ -899,58 +336,189 @@
               .css({ "max-height": "0" });
           }
         });
-      });
-      // 토스트 메시지 함수
-      function showToast(message) {
-        var toast = $("<div class='toast'></div>").html(message);
-        $("body").append(toast);
-        toast
-          .fadeIn(400)
-          .delay(2000)
-          .fadeOut(300, function () {
-            $(this).remove();
+
+        //리포트 닫기
+        $(".store-report .btn-close").click(function () {
+          $(this).closest(".store-report").removeClass("open");
+          $(".btn-compare").hide();
+        });
+
+        //리포트 : 위치에 따른 경쟁매장 비교하기 버튼 추가/제거
+        $(".con").each(function () {
+          const con = $(this);
+          const btnCompare = con.find(".btn-compare");
+          const checkList = con.find(".list");
+
+          con.on("scroll", function () {
+            const scrollTop = con.scrollTop();
+            const conHeight = con.height() - 100;
+            const scrollHeight = con[0].scrollHeight;
+            const checkListOffset = checkList.position().top;
+            const checkListHeight = checkList.outerHeight() - 230;
+
+            btnCompare.toggle(
+              checkListOffset < conHeight &&
+                checkListOffset + checkListHeight > 0
+            );
+
+            checkList.toggleClass("end", scrollTop + conHeight >= scrollHeight);
           });
-      }
+        });
 
-      // 경쟁매장 비교하기 버튼 체크 상태에 따라 활성화
-      document.querySelectorAll("section").forEach((container) => {
-        const checkboxes = container.querySelectorAll(
-          '.check-list input[type="checkbox"]'
-        );
-        const compareButton = container.querySelector(".btn-compare");
+        //리포트 : 경쟁매장 비교하기 버튼 클릭시 차트와 리스트 토글
+        $(".btn-compare").click(function () {
+          const checkList = $(this).closest("section").find(".check-list");
+          const chartWrap = $(this).closest("section").find(".chart-wrap");
 
-        function updateButtonState() {
-          const isChecked = Array.from(checkboxes).some(
-            (checkbox) => checkbox.checked
-          );
-          compareButton.disabled = !isChecked;
-        }
+          if ($(this).text() === "다시 비교하기") {
+            checkList.show();
+            chartWrap.hide();
+            $(this).text("경쟁점 비교하기");
+          } else {
+            checkList.hide();
+            chartWrap.show();
+            $(this).text("다시 비교하기");
+          }
+        });
 
-        // 각 체크박스에 이벤트 리스너 추가
-        checkboxes.forEach((checkbox) => {
-          checkbox.addEventListener("change", updateButtonState);
+        //리포트 : 경쟁매장 비교하기 버튼 체크 상태에 따라 활성화
+        $("section").each(function () {
+          const checkboxes = $(this).find('.check-list input[type="checkbox"]');
+          const compareButton = $(this).find(".btn-compare");
+          function updateButtonState() {
+            const isChecked = checkboxes.is(":checked");
+            compareButton.prop("disabled", !isChecked);
+          }
+          checkboxes.on("change", updateButtonState);
         });
       });
-      // 체크박스와 버튼 선택
-      const checkboxes = document.querySelectorAll(
-        '.check-list input[type="checkbox"]'
-      );
-      const compareButton = document.querySelector(".btn-compare");
 
-      // 상태 업데이트 함수
-      function updateButtonState() {
-        // 체크박스 중 하나라도 체크된 것이 있는지 확인
-        const isChecked = Array.from(checkboxes).some(
-          (checkbox) => checkbox.checked
-        );
-        compareButton.disabled = !isChecked; // 체크가 있으면 활성화, 없으면 비활성화
-      }
+      ///////////////////////////// chart /////////////////////////////
 
-      // 각 체크박스에 이벤트 리스너 추가
-      checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener("change", updateButtonState);
+      document.addEventListener("DOMContentLoaded", function () {
+        // 내 주변 경쟁 매장 기준 시점별 매출
+        var ctx11 = document.getElementById("chart11").getContext("2d");
+        var chart11 = new Chart(ctx11, {
+          type: "bar",
+          data: {
+            labels: ["내 매장", "AAA", "BBB", "CCC", "DDD"],
+            datasets: [
+              {
+                data: [1000, 1700, 1600, 600, 800],
+                backgroundColor: [
+                  "#0B1D59", // 내 매장 색상
+                  "#d9d9d9",
+                  "#d9d9d9",
+                  "#d9d9d9",
+                  "#d9d9d9",
+                ],
+                borderRadius: {
+                  topLeft: 50,
+                  topRight: 50,
+                  bottomLeft: 0,
+                  bottomRight: 0,
+                },
+                borderSkipped: false,
+                barThickness: 20,
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false, // 라벨 표시 안함
+              },
+            },
+            scales: {
+              x: {
+                beginAtZero: true,
+                grid: {
+                  display: false, // x축 격자 비활성화
+                },
+                ticks: {
+                  font: {
+                    size: 11,
+                    weight: "bold",
+                  },
+                },
+              },
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false, // y축 격자 비활성화
+                },
+                ticks: {
+                  font: {
+                    size: 11,
+                    weight: "bold",
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        //내가 선택한 경쟁 매장 기준 매출
+        var ctx12 = document.getElementById("chart12").getContext("2d");
+        var chart12 = new Chart(ctx12, {
+          type: "bar",
+          data: {
+            labels: ["내 매장", "AAA", "BBB", "CCC"],
+            datasets: [
+              {
+                data: [1000, 1700, 1600, 600],
+                backgroundColor: [
+                  "#0B1D59", // 내 매장 색상
+                  "#d9d9d9",
+                  "#d9d9d9",
+                  "#d9d9d9",
+                ],
+                borderRadius: {
+                  topLeft: 50,
+                  topRight: 50,
+                  bottomLeft: 0,
+                  bottomRight: 0,
+                },
+                borderSkipped: false,
+                barThickness: 20,
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false, // 라벨 표시 안함
+              },
+            },
+            scales: {
+              x: {
+                beginAtZero: true,
+                grid: {
+                  display: false, // x축 격자 비활성화
+                },
+                ticks: {
+                  font: {
+                    size: 11,
+                    weight: "bold",
+                  },
+                },
+              },
+              y: {
+                beginAtZero: true,
+                grid: {
+                  display: false, // y축 격자 비활성화
+                },
+                ticks: {
+                  font: {
+                    size: 11,
+                    weight: "bold",
+                  },
+                },
+              },
+            },
+          },
+        });
       });
     </script>
-    <script src="./js/lib/reportChart.js"></script>
   </body>
 </html>

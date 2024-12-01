@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <!-- 공통 head js,css 정의 -->
+  <head th:replace="~{/fragments/head :: head}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./js/lib/leaflet/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./js/lib/leaflet/control/L.Control.Zoomslider.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./js/lib/leaflet/control/Leaflet.draw/leaflet.draw.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./js/lib/leaflet/control/measure_control/leaflet.measurecontrol.css"
+    />
+
+    <script src="./js/lib/jquery-3.7.1.min.js"></script>
+    <script src="./js/lib/leaflet/leaflet.js"></script>
+    <script src="./js/lib/leaflet/control/L.Control.Zoomslider.js"></script>
+    <script src="./js/lib/leaflet/control/Leaflet.draw/leaflet.draw.js"></script>
+    <script src="./js/lib/leaflet/control/measure_control/leaflet.measurecontrol.min.js"></script>
+    <script src="./js/lib/leaflet/control/L.openmate_measure.js"></script>
+    <script src="./js/lib/leaflet/control/leaflet-arrowheads/src/leaflet-arrowheads.js"></script>
+    <script src="./js/lib/leaflet/control/leaflet-arrowheads/src/leaflet-geometryutil.js"></script>
+    <script src="./js/lib/proj4/proj4.js"></script>
+    <script src="./js/lib/proj4/proj4leaflet.js"></script>
+
+    <script src="./js/lib/common.js"></script>
+    <script src="./js/lib/map.js"></script>
+    <script src="./js/lib/event.js"></script>
+
+    <meta charset="UTF-8" />
+    <title>Li-ON</title>
+
+    <!-- 추가된 meta / css / js -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./css/reboot.css" />
+    <link rel="stylesheet" type="text/css" href="./css/map.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+
+    <script src="./js/lib/chart.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+    <!-- // 추가된 meta / css / js -->
+  </head>
+
+  <!-- 주요 naming
+    ###  메뉴 ###
+    내주변 경쟁 매장 매출현황 - competitor-sales
+    내 주변 경쟁매장 영향권역 - competitor-influence
+    내 매장 주변현황 - store-surroundings
+    개업 시 예상 매출 - expected-sales    
+
+    ### 페이지 내 요소 ###
+    지도 POI - poiIco
+  -->
+
+  <body class="competitor-influence">
+    <!-- Header Area -->
+    <header>
+      <div class="header-inner">
+        <button type="button" class="btn-prev"><span>이전</span></button>
+        <h2>내 주변 경쟁매장 영향권역</h2>
+        <button type="button" class="btn-menu"><span>메뉴</span></button>
+        <button type="button" class="btn-close off"><span>닫기</span></button>
+      </div>
+      <div class="menu-list">
+        <p class="tit">내 주변 현황을 한눈에 빠르게 !</p>
+        <button type="button" onclick="location.href='./'">
+          내 주변 경쟁매장 매출현황
+        </button>
+        <button
+          type="button"
+          onclick="location.href='./competitor-influence.html'"
+          class="active"
+        >
+          내 주변 경쟁매장 영향권역
+        </button>
+        <button
+          type="button"
+          onclick="location.href='./store-surroundings.html'"
+        >
+          내 매장 주변현황
+        </button>
+        <button type="button" onclick="location.href='./expected-sales.html'">
+          개업 시 예상매출
+        </button>
+      </div>
+    </header>
+    <!-- // Header Area  -->
+
+    <!-- 내 주변 경쟁매장 영향권역 POI -->
+    <div class="poiIco">
+      <div class="my-shop" style="left: 180px; top: 250px">
+        <i class="ico-poi"></i>
+        <div class="info-box">
+          <span class="name">내 가게</span>
+        </div>
+      </div>
+      <div class="low-shop" style="left: 280px; top: 400px">
+        <div class="info-box">
+          <span class="name">AAA 매장명</span>
+        </div>
+      </div>
+      <div class="low-shop" style="left: 100px; top: 480px">
+        <div class="info-box">
+          <span class="name">BBB 매장명</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Area  -->
+    <div class="bottom-area">
+      <button type="button" class="swipe-ctr"></button>
+      <div class="bottom-area-inner">
+        <div class="myshops">
+          <div class="name">신촌매장</div>
+          <div class="name">선능매장</div>
+          <div class="name">삼성매장</div>
+        </div>
+        <ul class="legend">
+          <li class="my">내 매장</li>
+          <li class="low">경쟁점</li>
+        </ul>
+        <div class="smr">· 반경은 내 가게 기준 500m 입니다.</div>
+      </div>
+    </div>
+    <!-- // Button Area  -->
+
+    <!-- Map Area -->
+    <div id="map" class="mapArea"></div>
+    <!-- //Map Area -->
+
+    <script>
+      _MAP.init();
+
+      $(function () {
+        //상단메뉴 열기
+        $("header .btn-menu, header .btn-close").click(function () {
+          const isMenu = $(this).hasClass("btn-menu");
+          $("header").toggleClass("open", isMenu);
+          $("header .btn-close").toggleClass("off", !isMenu);
+          $("header .btn-menu").toggleClass("off", isMenu);
+        });
+
+        // 내 매장 리스트 슬라이드
+        $(".myshops").slick({
+          dots: false,
+          slidesToShow: 1,
+          arrows: true,
+        });
+
+        // 하단 touch swipe
+        let startY = 0;
+
+        $(".swipe-ctr").on("touchstart", function (e) {
+          startY = e.originalEvent.touches[0].clientY;
+        });
+
+        $(".swipe-ctr").on("touchmove", function (e) {
+          const currentY = e.originalEvent.touches[0].clientY;
+          const diffY = currentY - startY;
+          const conWrapHeight = $(".swipe-ctr")
+            .siblings(".bottom-area-inner")
+            .height();
+
+          if (diffY < -50) {
+            // 버튼을 일정한 거리 이상 위로 드래그했을 때
+            $(".swipe-ctr")
+              .siblings(".bottom-area-inner")
+              .css({ "max-height": "500px" });
+          } else if (diffY > 50) {
+            // 버튼을 일정한 거리 이상 아래로 드래그했을 때
+            $(".swipe-ctr")
+              .siblings(".bottom-area-inner")
+              .css({ "max-height": "0" });
+          }
+        });
+      });
+
+      //내 주변 경쟁매장 영향권역 토스트 메시지
+      showToast(
+        "지도에서 경쟁 매장을 선택하시면 <br>경쟁매장의 영향 권역을 보실 수 있습니다."
+      );
+
+      // 토스트 메시지 함수
+      function showToast(message) {
+        var toast = $("<div class='toast'></div>").html(message);
+        $("body").append(toast);
+        toast
+          .fadeIn(400)
+          .delay(2000)
+          .fadeOut(300, function () {
+            $(this).remove();
+          });
+      }
+    </script>
+  </body>
+</html>
