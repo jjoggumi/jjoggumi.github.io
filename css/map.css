@@ -769,6 +769,8 @@ input[type="checkbox"]:disabled + label::before {
 .poiIco {
   z-index: 999;
   position: absolute;
+  left: 50%;
+  top: 50%;
 }
 .poiIco [class*="-shop"] {
   width: 0px;
@@ -940,7 +942,7 @@ input[type="checkbox"]:disabled + label::before {
   right: 0;
   z-index: 1001;
   background: #fff;
-  border-radius: 16px;
+  border-radius: 16px 16px 0 0;
   height: 0;
   transition: 0.5s;
   /* opacity: 0; */
@@ -1380,12 +1382,12 @@ input[type="checkbox"]:disabled + label::before {
 /* 변화기준 */
 .change-criteria {
   position: absolute;
-  top: calc(50% - 150px);
+  top: calc(50% - 80px);
   right: 10px;
   z-index: 1000;
   width: 50px;
   font-size: 12px;
-  letter-spacing: -0.5;
+  letter-spacing: -0.5px;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 0 10px rgb(0 0 0 / 30%);
