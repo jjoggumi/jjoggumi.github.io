@@ -1268,7 +1268,7 @@ input[type="checkbox"]:disabled + label::before {
 }
 .store-report .check-list li .name {
   font-weight: var(--font-sb);
-  font-size: 1.6rem;
+  font-size: 16px;
   color: #aaa;
   margin-bottom: 4px;
 }
