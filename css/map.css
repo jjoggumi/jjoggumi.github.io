@@ -1150,8 +1150,8 @@ input[type="checkbox"]:disabled + label::before {
 .store-report .status-wrap .gender .gender-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 12px 10px 20px;
+  gap: 6px;
+  margin: 12px 8px 20px;
 }
 .store-report .status-wrap .gender .gender-bar::before,
 .store-report .status-wrap .gender .gender-bar::after {
@@ -1182,6 +1182,7 @@ input[type="checkbox"]:disabled + label::before {
 }
 .store-report .status-wrap .gender .gender-bar .label {
   margin: 0 5px;
+  font-size:1.4rem;
 }
 .store-report .status-wrap .age-group {
   display: flex;
