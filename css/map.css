@@ -66,10 +66,10 @@ ul {
 }
 .sr-only {
   position: absolute !important;
-  width: 0.1rem !important;
-  height: 0.1rem !important;
+  width: 1px !important;
+  height: 1px !important;
   padding: 0 !important;
-  margin: -0.1rem !important;
+  margin: -1px !important;
   overflow: hidden !important;
   clip: rect(0, 0, 0, 0) !important;
   border: 0;
@@ -82,11 +82,11 @@ h5 {
   font-weight: 400;
 }
 *::-webkit-scrollbar {
-  width: 0.8rem;
+  width: 8px;
 }
 *::-webkit-scrollbar-thumb {
   background: rgb(217, 217, 217);
-  border-radius: 1rem;
+  border-radius: 10px;
 }
 *::-webkit-scrollbar-track {
   background: rgba(217, 217, 217, 0.3);
@@ -148,7 +148,7 @@ table th {
 }
 table {
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
   border-top: 1px solid #ddd;
   overflow-x: auto;
 }
@@ -164,7 +164,7 @@ table:last-child {
   margin-bottom: 0;
 }
 table thead th {
-  padding: 0.9rem 1rem;
+  padding: 9px 10px;
   border-left: 1px solid #ddd;
   background-color: #f5f5f5;
   border-bottom: 1px solid #ddd;
@@ -172,7 +172,7 @@ table thead th {
   word-break: keep-all;
 }
 table tbody td {
-  padding: 0.9rem 1rem;
+  padding: 9px 10px;
   text-align: center;
   border-left: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
@@ -185,8 +185,8 @@ table tbody th:last-child {
   border-right: 1px solid #ddd;
 }
 table tbody th {
-  padding: 0.5rem 1rem;
-  height: 4rem;
+  padding: 5px 10px;
+  height: 40px;
   font-weight: var(--font-sb);
   text-align: center;
   border-left: 1px solid #dddd;
@@ -217,13 +217,13 @@ table tbody th {
 }
 .modal .modal-wrap {
   width: 95%;
-  max-width: 32.5rem;
+  max-width: 325px;
   max-height: calc(100% - 20px);
   margin: 10px auto;
   background: #fff;
   overflow: hidden;
-  border-radius: 1.2rem;
-  box-shadow: 0 0 1.5rem rgb(0 0 0 / 25%);
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgb(0 0 0 / 25%);
   -webkit-animation-name: slideIn;
   -webkit-animation-duration: 0.4s;
   animation-name: slideIn;
@@ -232,19 +232,19 @@ table tbody th {
   flex-flow: column;
 }
 .modal .modal-head {
-  padding: 1.6rem 1.6rem 0rem;
+  padding: 16px 16px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: var(--font-sb);
-  font-size: 2rem;
+  font-size: 20px;
   position: relative;
   min-height: 46px;
 }
 .modal .modal-head .tit {
   flex-grow: 1;
   position: relative;
-  font-size: 2rem;
+  font-size: 20px;
   font-weight: var(--font-sb);
 }
 .modal .modal-head .tit small {
@@ -254,27 +254,27 @@ table tbody th {
   font-size: 1.3rem;
   font-family: var(--font-body);
   position: absolute;
-  right: 1rem;
-  top: 0.5rem;
+  right: 10px;
+  top: 5px;
 }
 .modal .modal-head .btn-modal-close {
   text-indent: -9999999px;
   position: absolute;
-  right: 2rem;
-  top: 2rem;
-  width: 2.4rem;
-  height: 2.4rem;
+  right: 20px;
+  top: 20px;
+  width: 24px;
+  height: 24px;
   border: 0;
   background: url(../images/ico-close2.svg);
 }
 .modal .modal-body {
   overflow: auto;
-  padding: 2rem 2rem 0rem 2rem;
+  padding: 20px 20px 0 20px;
   flex-grow: 1;
   height: 100%;
 }
 .modal .modal-foot {
-  padding: 1rem;
+  padding: 10px;
   text-align: right;
   min-height: 55px;
 }
@@ -294,7 +294,7 @@ table tbody th {
   max-height: 100%;
   height: 100%;
   margin: 0 auto;
-  border-radius: 0rem;
+  border-radius: 0;
   box-shadow: none;
   display: flex;
   flex-flow: column;
@@ -367,14 +367,14 @@ table tbody th {
 /* 토스트 */
 .toast {
   position: fixed;
-  top: 5.8rem;
+  top: 58px;
   left: 50%;
   transform: translateX(-50%);
-  width: 30rem;
+  width: 300px;
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 5rem;
+  padding: 10px 20px;
+  border-radius: 50px;
   font-size: 1.4rem;
   display: none;
   z-index: 1000;
@@ -533,7 +533,7 @@ header.open .menu-list {
   border: 0;
   width: 100%;
   text-align: left;
-  padding: 1.5rem 4.5rem 1rem;
+  padding: 15px 45px 10px;
   background: #fff;
   font-size: 1.4rem;
   position: relative;
@@ -565,7 +565,7 @@ header.open .menu-list {
   padding: 10px;
 }
 .sales-period-list button {
-  min-height: 4rem;
+  min-height: 40px;
   border: 0;
   background: transparent;
   width: 100%;
@@ -694,7 +694,7 @@ header.open .menu-list {
 .bottom-area .legend li {
   display: flex;
   align-items: center;
-  margin: 0 0.8rem;
+  margin: 0 8px;
   font-size: 1.3rem;
 }
 .bottom-area .legend li::before {
@@ -715,7 +715,7 @@ header.open .menu-list {
   background: var(--color-success);
 }
 .bottom-area .smr {
-  height: 4rem;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -956,17 +956,17 @@ input[type="checkbox"]:disabled + label::before {
 .store-report > .btn-close {
   text-indent: -9999999px;
   position: absolute;
-  right: 2rem;
-  top: 2rem;
-  width: 2.4rem;
-  height: 2.4rem;
+  right: 20px;
+  top: 20px;
+  width: 24px;
+  height: 24px;
   border: 0;
   background: url(../images/ico-close2.svg);
 }
 .store-report > .tit {
-  font-size: 2rem;
+  font-size: 20px;
   font-weight: var(--font-sb);
-  padding: 36px 24px 2rem 24px;
+  padding: 36px 24px 20px 24px;
 }
 
 .store-report > .con {
@@ -999,11 +999,11 @@ input[type="checkbox"]:disabled + label::before {
 .store-report .con > .smr::after {
   display: block;
   content: "";
-  width: 5rem;
-  height: 5rem;
+  width: 50px;
+  height: 50px;
   position: absolute;
-  right: 2.2rem;
-  top: calc(50% - 2.5rem);
+  right: 22px;
+  top: calc(50% - 25px);
   border-radius: 100px;
   background: #f5f5f5 url(../images/ico-shop.svg) no-repeat center;
 }
@@ -1039,7 +1039,7 @@ input[type="checkbox"]:disabled + label::before {
   font-size: 1.4rem;
   color: #666;
   width: 100%;
-  padding-top: 0.4rem;
+  padding-top: 4px;
 }
 .store-report .tit-wrap .unit {
   font-size: 1.2rem;
@@ -1054,7 +1054,7 @@ input[type="checkbox"]:disabled + label::before {
   background-color: #f5f5f5;
   margin-bottom: 20px;
   padding: 12px;
-  border-radius: 0.8rem;
+  border-radius: 8px;
 }
 .store-report .chart-wrap .chart-left,
 .store-report .chart-wrap .chart-right {
@@ -1062,7 +1062,7 @@ input[type="checkbox"]:disabled + label::before {
 }
 .store-report .chart-wrap > div > .label {
   text-align: center;
-  margin-top: 0.8rem;
+  margin-top: 8px;
   font-size: 1.2rem;
 }
 
@@ -1077,18 +1077,18 @@ input[type="checkbox"]:disabled + label::before {
 #chart23-labels li {
   text-align: center;
   width: auto;
-  margin: 1.5rem 1rem 1rem;
+  margin: 15px 10px 10px;
 }
 #chart25-labels li {
   text-align: center;
   width: 100%;
-  margin: 1.5rem 0 1rem;
+  margin: 15px 0 10px;
 }
 #chart23-labels li::before {
   content: "";
   display: inline-block;
   vertical-align: middle;
-  margin-right: 0.4rem;
+  margin-right: 4px;
   width: 8px;
   height: 8px;
   border-radius: 10px;
@@ -1107,7 +1107,7 @@ input[type="checkbox"]:disabled + label::before {
   width: 8px;
   height: 8px;
   border-radius: 10px;
-  margin: 0 auto 0.4rem;
+  margin: 0 auto 4px;
 }
 
 #chart25-labels li:nth-child(1)::before {
@@ -1132,7 +1132,7 @@ input[type="checkbox"]:disabled + label::before {
   background-color: #f5f5f5;
   margin-bottom: 20px;
   padding: 30px 12px;
-  border-radius: 0.8rem;
+  border-radius: 8px;
 }
 .store-report .status-wrap .txt {
   text-align: center;
@@ -1141,21 +1141,21 @@ input[type="checkbox"]:disabled + label::before {
   font-size: 1.4rem;
 }
 .store-report .status-wrap .txt .data {
-  font-size: 2.4rem;
+  font-size: 24px;
   font-weight: var(--font-sb);
 }
 .store-report .status-wrap .gender .gender-bar {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  margin: 1.2rem 1rem 2rem;
+  gap: 8px;
+  margin: 12px 10px 20px;
 }
 .store-report .status-wrap .gender .gender-bar::before,
 .store-report .status-wrap .gender .gender-bar::after {
   display: block;
   content: "";
-  min-width: 2.1rem;
-  height: 4.3rem;
+  min-width: 21px;
+  height: 43px;
   background: url(../images/ico-man.svg);
 }
 .store-report .status-wrap .gender .gender-bar::after {
@@ -1164,41 +1164,41 @@ input[type="checkbox"]:disabled + label::before {
 .store-report .status-wrap .gender .gender-bar .man,
 .store-report .status-wrap .gender .gender-bar .woman {
   background: #5ba7ff;
-  height: 2.5rem;
-  border-radius: 5rem;
+  height: 25px;
+  border-radius: 50px;
   display: flex;
   align-items: center;
-  padding-left: 0.5rem;
+  padding-left: 5px;
   color: #fff;
   font-weight: var(--font-sb);
 }
 .store-report .status-wrap .gender .gender-bar .woman {
   background: #ff7c7c;
-  padding-right: 0.5rem;
+  padding-right: 5px;
   flex-flow: row-reverse;
 }
 .store-report .status-wrap .gender .gender-bar .label {
-  margin: 0 0.5rem;
+  margin: 0 5px;
 }
 .store-report .status-wrap .age-group {
   display: flex;
   justify-content: space-around;
 }
 .store-report .status-wrap .age-group div[class^="age"] {
-  width: 3rem;
-  height: 10rem;
+  width: 30px;
+  height: 100px;
   background: #e2e3e5;
-  border-radius: 5rem;
-  margin-top: 2.4rem;
+  border-radius: 50px;
+  margin-top: 24px;
   position: relative;
 }
 .store-report .status-wrap .age-group div[class^="age"] .label {
   position: absolute;
-  top: -2.4rem;
+  top: -24px;
 }
 .store-report .status-wrap .age-group div[class^="age"] .age-bar {
   width: 100%;
-  border-radius: 10rem;
+  border-radius: 100px;
   position: absolute;
   bottom: 0;
   color: #fff;
@@ -1253,7 +1253,7 @@ input[type="checkbox"]:disabled + label::before {
 
 .store-report .check-list li label {
   display: block;
-  padding: 1.2rem 2rem;
+  padding: 12px 20px;
   margin: 0;
   position: relative;
 }
@@ -1265,7 +1265,7 @@ input[type="checkbox"]:disabled + label::before {
   font-weight: var(--font-sb);
   font-size: 1.6rem;
   color: #aaa;
-  margin-bottom: 0.4rem;
+  margin-bottom: 4px;
 }
 
 .store-report .check-list li .add {
@@ -1277,7 +1277,7 @@ input[type="checkbox"]:disabled + label::before {
   background: #f5f5f5;
 }
 .store-report .check-list li input[type="checkbox"]:checked + label::after {
-  right: 2.5rem;
+  right: 25px;
   left: auto;
 }
 
@@ -1298,7 +1298,7 @@ input[type="checkbox"]:disabled + label::before {
   border-radius: 6px;
   cursor: pointer;
   z-index: 1000;
-  width: calc(100% - 4rem);
+  width: calc(100% - 40px);
   transition: 0.3s;
 }
 .store-report .table-wrap {
@@ -1340,7 +1340,7 @@ input[type="checkbox"]:disabled + label::before {
 /* 내 주변 경쟁 매장 매출 현황 */
 .competitor-sales .store-report .check-list,
 .competitor-sales .store-report .check-list + .chart-wrap {
-  padding-bottom: 6rem;
+  padding-bottom: 60px;
 }
 .competitor-sales .poiIco > div::before {
   display: block;
@@ -1450,10 +1450,10 @@ input[type="checkbox"]:disabled + label::before {
 .expected-sales .bottom-area .legend li label {
   display: flex;
   align-items: center;
-  padding: 1.2rem 0rem 1.2rem 2.5rem;
+  padding: 12px 0 12px 25px;
   margin: 0;
   position: relative;
-  gap: 0.5rem;
+  gap: 5px;
 }
 .expected-sales
   .bottom-area
@@ -1577,7 +1577,7 @@ input[type="checkbox"]:disabled + label::before {
 }
 .expected-sales-search .list-wrap ul li label {
   display: block;
-  padding: 1rem 2rem;
+  padding: 10px 20px;
   margin: 0;
   position: relative;
   height: 100%;
@@ -1600,7 +1600,7 @@ input[type="checkbox"]:disabled + label::before {
   li
   input[type="checkbox"]:checked
   + label::after {
-  right: 2.5rem;
+  right: 25px;
   left: auto;
 }
 
@@ -1681,8 +1681,8 @@ input[type="checkbox"]:disabled + label::before {
   margin-top: 10px;
   position: fixed;
   bottom: 20px;
-  left: 2rem;
-  right: 2rem;
+  left: 20px;
+  right: 20px;
 }
 .expected-sales-search.open-btn .modal-body {
   padding: 0 20px 70px;
@@ -1705,7 +1705,7 @@ input[type="checkbox"]:disabled + label::before {
   width: 35px;
   height: 35px;
   border-radius: 50px;
-  box-shadow: 0 0 1.5rem rgb(0 0 0 / 25%);
+  box-shadow: 0 0 15px rgb(0 0 0 / 25%);
   z-index: 1;
 }
 .rents-info-list .slick-prev {
