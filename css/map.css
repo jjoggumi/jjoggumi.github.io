@@ -93,6 +93,7 @@ h5 {
 button {
   cursor: pointer;
   font-weight: 400;
+  color: var(--font-color);
 }
 button:focus {
   outline: 0;
@@ -511,9 +512,9 @@ header.open .menu-list {
   top: 58px;
   z-index: 1000;
   max-width: 354px;
-  width:calc(100% - 20px);
+  width: calc(100% - 20px);
   left: 50%;
-  transform:translate(-50%, 0);
+  transform: translate(-50%, 0);
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
