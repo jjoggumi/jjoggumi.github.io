@@ -775,12 +775,23 @@
       _MAP.init();
 
       $(function () {
-        //상단메뉴 열기
-        $("header .btn-menu, header .btn-close").click(function () {
-          const isMenu = $(this).hasClass("btn-menu");
-          $("header").toggleClass("open", isMenu);
-          $("header .btn-close").toggleClass("off", !isMenu);
-          $("header .btn-menu").toggleClass("off", isMenu);
+        //상단메뉴 열기 닫기
+        $("header").click(function (event) {
+          const isMenuButton = $(event.target).closest(".btn-menu").length > 0;
+          const isCloseButton =
+            $(event.target).closest(".btn-close").length > 0;
+          const isHeaderInnerOrMenuList =
+            $(event.target).closest(".header-inner, .menu-list").length > 0;
+
+          if (isMenuButton) {
+            $("header").addClass("open");
+            $("header .btn-close").removeClass("off");
+            $("header .btn-menu").addClass("off");
+          } else if (isCloseButton || !isHeaderInnerOrMenuList) {
+            $("header").removeClass("open");
+            $("header .btn-close").addClass("off");
+            $("header .btn-menu").removeClass("off");
+          }
         });
 
         //모달 열기(공통)
