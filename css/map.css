@@ -964,12 +964,13 @@ input[type="checkbox"]:disabled + label::before {
   height: 24px;
   border: 0;
   background: url(../images/ico-close2.svg);
-  background-size: 100%;
+  background-size: 100% 10;
 }
 .store-report > .tit {
   font-size: 20px;
   font-weight: var(--font-sb);
   padding: 36px 24px 20px 24px;
+  background: #c00000;
 }
 
 .store-report > .con {
@@ -1151,7 +1152,7 @@ input[type="checkbox"]:disabled + label::before {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin: 12px 8px 20px;
+  margin: 12px 6px 20px;
 }
 .store-report .status-wrap .gender .gender-bar::before,
 .store-report .status-wrap .gender .gender-bar::after {
@@ -1182,7 +1183,7 @@ input[type="checkbox"]:disabled + label::before {
 }
 .store-report .status-wrap .gender .gender-bar .label {
   margin: 0 5px;
-  font-size:1.4rem;
+  font-size: 1.2rem;
 }
 .store-report .status-wrap .age-group {
   display: flex;
@@ -1315,6 +1316,7 @@ input[type="checkbox"]:disabled + label::before {
 .store-report .business-status .tit-wrap .tit {
   font-size: 18px;
   padding-bottom: 20px;
+  width: 100%;
 }
 .store-report .business-status .tit-wrap .desc {
   padding-bottom: 20px;
