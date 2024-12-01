@@ -970,7 +970,6 @@ input[type="checkbox"]:disabled + label::before {
   font-size: 20px;
   font-weight: var(--font-sb);
   padding: 36px 24px 20px 24px;
-  background: #c00000;
 }
 
 .store-report > .con {
