@@ -210,7 +210,6 @@ table tbody th {
   animation-name: fadeIn;
   animation-duration: 0.4s;
   align-items: center;
-  flex-flow: column;
 }
 .modal.open {
   display: flex;
@@ -228,6 +227,8 @@ table tbody th {
   -webkit-animation-duration: 0.4s;
   animation-name: slideIn;
   animation-duration: 0.4s;
+  display: flex;
+  flex-flow: column;
 }
 .modal .modal-head {
   padding: 1.6rem 1.6rem 0rem;
