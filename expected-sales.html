@@ -660,60 +660,65 @@
     </div>
 
     <!-- 개업 시 예상 매출 POI -->
-    <div class="poiIco">
-      <div class="my-shop">
-        <span class="radius"></span>
-        <i class="ico-poi"></i>
-        <div class="info-box">
-          <span class="name">서대문역</span>
-          <button
-            type="button"
-            class="btn-detail btn-modal-open"
-            data-target="store-report"
-            style="display: none"
-          >
-            상세보기
-          </button>
-        </div>
-      </div>
-      <div class="low-shop" style="left: 100px; top: 50px">
-        <div class="info-box">
-          <button
-            type="button"
-            class="name btn-modal-open"
-            data-target="rents-info"
-          >
-            AAA 건물명
-          </button>
-          <button
-            type="button"
-            class="multi btn-modal-open"
-            data-target="rents-info"
-          >
-            <small>+</small>5
-          </button>
-        </div>
-      </div>
-      <div class="high-shop" style="left: 71px; top: -58px; display: none">
-        <span class="radius"></span>
-        <div class="info-box">
-          <span class="name">bbb 매장명</span>
-          <button
-            type="button"
-            class="multi btn-modal-open"
-            data-target="shops-info"
-          >
-            <small>+</small>5
-          </button>
-        </div>
-      </div>
-      <div class="high-shop" style="left: -88px; top: 46px; display: none">
-        <div class="info-box">
-          <span class="name">ccc 매장명</span>
-        </div>
+    <div
+      class="poiIco my-shop"
+      style="left: 50%; top: 50%; transform: translate(-50%, -50%)"
+    >
+      <span class="radius"></span>
+      <i class="ico-poi"></i>
+      <div class="info-box">
+        <span class="name">서대문역</span>
+        <button
+          type="button"
+          class="btn-detail btn-modal-open"
+          data-target="store-report"
+          style="display: none"
+        >
+          상세보기
+        </button>
       </div>
     </div>
-
+    <div class="poiIco low-shop" style="left: 50px; top: 170px">
+      <div class="info-box">
+        <button
+          type="button"
+          class="name btn-modal-open"
+          data-target="rents-info"
+        >
+          AAA 건물명
+        </button>
+        <button
+          type="button"
+          class="multi btn-modal-open"
+          data-target="rents-info"
+        >
+          <small>+</small>5
+        </button>
+      </div>
+    </div>
+    <div
+      class="poiIco high-shop"
+      style="right: 50px; bottom: 230px; display: none"
+    >
+      <div class="info-box">
+        <span class="name">bbb 매장명</span>
+        <button
+          type="button"
+          class="multi btn-modal-open"
+          data-target="shops-info"
+        >
+          <small>+</small>5
+        </button>
+      </div>
+    </div>
+    <div
+      class="poiIco high-shop"
+      style="right: 50px; top: 170px; display: none"
+    >
+      <div class="info-box">
+        <span class="name">ccc 매장명</span>
+      </div>
+    </div>
     <!-- 알림 모달 -->
     <div class="modal noti-modal noti">
       <div class="modal-wrap">
@@ -947,7 +952,7 @@
         //하단 체크박스 상태에 따라 지도 내 POI 요소를 활성화/비활성화
         $(".legend input[type='checkbox']").change(function () {
           const isCheckedId = $(this).closest("li").attr("class");
-          $(".poiIco ." + isCheckedId + "-shop").toggle($(this).is(":checked"));
+          $(".poiIco." + isCheckedId + "-shop").toggle($(this).is(":checked"));
         });
 
         //개업시 예상매출 검색 : 하단 검색 버튼 클릭 시 알림

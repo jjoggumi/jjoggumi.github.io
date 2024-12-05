@@ -167,7 +167,7 @@
         <div class="smr">
           <span class="underline">서대문역 상권</span>내에서 직전월 기준
           <span class="underline"
-            >평균 매장 매출 증감률 대비12% 높고, 유입인구는 21% 증가</span
+            >평균 매장 매출 증감률 대비12% 높고, 유동인구는 21% 증가</span
           >
           했으며, 폐업매장수보다
           <span class="underline">창업매장 수가 5% 더 많습니다.</span>
@@ -233,10 +233,10 @@
           </button>
         </section>
 
-        <!-- 성별 유입인구 수 -->
+        <!-- 성별 유동인구 수 -->
         <section>
           <div class="tit-wrap">
-            <div class="tit">성별 유입인구 수</div>
+            <div class="tit">성별 유동인구 수</div>
             <div class="unit">(단위 : 명)</div>
           </div>
           <div class="chart-wrap">
@@ -281,10 +281,10 @@
           </div>
         </section>
 
-        <!-- 연령별 유입인구 수 -->
+        <!-- 연령별 유동인구 수 -->
         <section>
           <div class="tit-wrap">
-            <div class="tit">연령별 유입인구 수</div>
+            <div class="tit">연령별 유동인구 수</div>
             <div class="unit">(단위 : 명)</div>
           </div>
           <div class="chart-wrap">
@@ -335,7 +335,7 @@
             </table>
           </div>
           <div class="desc">
-            해당지역은 직전월 기준 대비 20대 남성의 유입인구 수가 12%
+            해당지역은 직전월 기준 대비 20대 남성의 유동인구 수가 12%
             증가하였습니다.
           </div>
         </section>
@@ -533,61 +533,65 @@
     </div>
 
     <!-- 내 매장 주변현황 POI -->
-    <div class="poiIco">
-      <div class="my-shop">
-        <i class="ico-poi"></i>
-        <div class="info-box">
-          <span class="name">내 가게</span>
-          <button
-            type="button"
-            class="btn-detail btn-modal-open"
-            data-target="store-report"
-          >
-            상세보기
-          </button>
-        </div>
+    <div
+      class="poiIco my-shop"
+      style="left: 50%; top: 50%; transform: translate(-50%, -50%)"
+    >
+      <i class="ico-poi"></i>
+      <div class="info-box">
+        <span class="name">내 가게</span>
+        <button
+          type="button"
+          class="btn-detail btn-modal-open"
+          data-target="store-report"
+        >
+          상세보기
+        </button>
       </div>
-      <!-- 매출변동 poi -->
-      <div class="high-shop sales-change" style="left: 92px; top: 45px">
-        <div class="info-box">
-          <span class="name">AAA 매장명</span>
-          <span class="rate">+<strong>25</strong>%</span>
-          <span class="multi"><small>+</small>5</span>
-        </div>
+    </div>
+    <!-- 매출변동 poi -->
+    <div class="poiIco high-shop sales-change" style="left: 50px; top: 170px">
+      <div class="info-box">
+        <span class="name">AAA 매장명</span>
+        <span class="rate">+<strong>25</strong>%</span>
+        <span class="multi"><small>+</small>5</span>
       </div>
-      <div class="low-shop sales-change" style="left: -92px; top: -45px">
-        <div class="info-box">
-          <span class="name">BBB 매장명</span>
-          <span class="rate">-<strong>25</strong>%</span>
-          <span class="multi"><small>+</small>5</span>
-        </div>
+    </div>
+    <div
+      class="poiIco low-shop sales-change"
+      style="right: 50px; bottom: 170px"
+    >
+      <div class="info-box">
+        <span class="name">BBB 매장명</span>
+        <span class="rate">-<strong>25</strong>%</span>
+        <span class="multi"><small>+</small>5</span>
       </div>
-      <!-- 인구변동 poi -->
-      <div
-        class="population population-change"
-        style="left: 0; top: 135px; display: none"
-      >
-        <div class="info-box">
-          <span class="smr">전체 인구</span>
-          <span class="data">-2%</span>
-        </div>
+    </div>
+    <!-- 인구변동 poi -->
+    <div
+      class="poiIco population population-change"
+      style="left: 50%; top: 245px; display: none"
+    >
+      <div class="info-box">
+        <span class="smr">전체 인구</span>
+        <span class="data">-2%</span>
       </div>
-      <!-- 매장변동 poi -->
-      <div
-        class="high-shop store-change"
-        style="left: 60px; top: 60px; display: none"
-      >
-        <div class="info-box">
-          <span class="name">AAA 매장명</span>
-        </div>
+    </div>
+    <!-- 매장변동 poi -->
+    <div
+      class="poiIco high-shop store-change"
+      style="left: 50px; top: 170px; display: none"
+    >
+      <div class="info-box">
+        <span class="name">AAA 매장명</span>
       </div>
-      <div
-        class="low-shop store-change"
-        style="left: -92px; top: -45px; display: none"
-      >
-        <div class="info-box">
-          <span class="name">BBB 매장명</span>
-        </div>
+    </div>
+    <div
+      class="poiIco low-shop store-change"
+      style="right: 50px; bottom: 170px; display: none"
+    >
+      <div class="info-box">
+        <span class="name">BBB 매장명</span>
       </div>
     </div>
 
@@ -767,8 +771,8 @@
           $(".change-btn").removeClass("active");
           $(this).addClass("active");
           $(".legend").hide();
-          $(".poiIco > div ").hide();
-          $(".poiIco .my-shop").show();
+          $(".poiIco").hide();
+          $(".poiIco.my-shop").show();
           $("." + targetClass).show();
         });
       });
@@ -899,7 +903,7 @@
           },
         });
 
-        // 성별 유입인구 수 (24.07)
+        // 성별 유동인구 수 (24.07)
         var ctx23 = document.getElementById("chart23").getContext("2d");
 
         var chart23 = new Chart(ctx23, {
@@ -941,7 +945,7 @@
           ],
         });
 
-        // 성별 유입인구 수 (24.09)
+        // 성별 유동인구 수 (24.09)
         var ctx24 = document.getElementById("chart24").getContext("2d");
         var chart24 = new Chart(ctx24, {
           type: "pie",
@@ -982,7 +986,7 @@
           ],
         });
 
-        // 연령별 유입인구 수 (24.07)
+        // 연령별 유동인구 수 (24.07)
         var ctx25 = document.getElementById("chart25").getContext("2d");
         var chart25 = new Chart(ctx25, {
           type: "pie",
@@ -1030,7 +1034,7 @@
           ],
         });
 
-        // 연령별 유입인구 수 (24.09)
+        // 연령별 유동인구 수 (24.09)
         var ctx26 = document.getElementById("chart26").getContext("2d");
         var chart26 = new Chart(ctx26, {
           type: "pie",
