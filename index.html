@@ -275,13 +275,16 @@
         </ul>
         <div class="smr">
           · 반경은 내 가게 기준
-          <select class="radius-select">
-            <option value="100">100m</option>
-            <option value="200">200m</option>
-            <option value="300">300m</option>
-            <option value="400">400m</option>
-            <option value="500">500m</option>
-          </select>
+          <span class="radius-wrap">
+            <button type="button" class="btn-dropdown">500m</button>
+            <div class="dropdown-content">
+              <button type="button">100m</button>
+              <button type="button">200m</button>
+              <button type="button">300m</button>
+              <button type="button">400m</button>
+              <button type="button">500m</button>
+            </div>
+          </span>
           입니다.
         </div>
       </div>
@@ -331,6 +334,17 @@
           dots: false,
           slidesToShow: 1,
           arrows: true,
+        });
+
+        // 반경 선택 드롭다운
+        $(".btn-dropdown").on("click", function () {
+          $(".dropdown-content").toggleClass("show");
+        });
+
+        $(window).on("click", function (event) {
+          if (!$(event.target).closest(".btn-dropdown").length) {
+            $(".dropdown-content").removeClass("show");
+          }
         });
 
         // 하단 touch swipe

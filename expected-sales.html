@@ -768,7 +768,20 @@
             <label for="03"> 개업가능지점 </label>
           </li>
         </ul>
-        <div class="smr">· 반경은 내 가게 기준 500m 입니다.</div>
+        <div class="smr">
+          · 반경은 내 가게 기준
+          <span class="radius-wrap">
+            <button type="button" class="btn-dropdown">500m</button>
+            <div class="dropdown-content">
+              <button type="button">100m</button>
+              <button type="button">200m</button>
+              <button type="button">300m</button>
+              <button type="button">400m</button>
+              <button type="button">500m</button>
+            </div>
+          </span>
+          입니다.
+        </div>
       </div>
     </div>
     <!-- // Button Area  -->
@@ -832,6 +845,17 @@
           dots: false,
           slidesToShow: 1,
           arrows: true,
+        });
+
+        // 반경 선택 드롭다운
+        $(".btn-dropdown").on("click", function () {
+          $(".dropdown-content").toggleClass("show");
+        });
+
+        $(window).on("click", function (event) {
+          if (!$(event.target).closest(".btn-dropdown").length) {
+            $(".dropdown-content").removeClass("show");
+          }
         });
 
         // 하단 touch swipe
