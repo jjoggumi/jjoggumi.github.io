@@ -823,7 +823,6 @@ input[type="checkbox"]:disabled + label::before {
 }
 .poiIco .info-box {
   position: relative;
-  width: 76px;
   min-height: 32px;
   background: #fff;
   border-radius: 4px;
@@ -843,8 +842,8 @@ input[type="checkbox"]:disabled + label::before {
   left: calc(50% - 5px);
 }
 .poiIco .info-box .name {
-  display: inline-block;
-  padding: 8px 4px;
+  display: block;
+  padding: 8px 8px;
   border: 0;
   background: transparent;
 }
@@ -867,7 +866,8 @@ input[type="checkbox"]:disabled + label::before {
   border: 0;
   border-radius: 2px;
   background: #ffeb00;
-  margin-bottom: 8px;
+  margin: 8px;
+  margin-top: 0;
 }
 .poiIco .name + .rate {
   font-size: 18px;
