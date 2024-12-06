@@ -1856,3 +1856,16 @@ input[type="checkbox"]:disabled + label::before {
   width: 100%;
   height: 100%;
 }
+
+/* loading */
+.loading-ani {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  background: transparent;
+  position: absolute;
+  z-index: 99999999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
