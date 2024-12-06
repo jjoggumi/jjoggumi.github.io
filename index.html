@@ -135,21 +135,109 @@
         </div>
         <div class="modal-body">
           <div class="sales-period-list">
-            <button type="button">2024년 10월 매출기준</button>
-            <button type="button">2024년 9월 매출기준</button>
-            <button type="button">2024년 8월 매출기준</button>
-            <button type="button">2024년 7월 매출기준</button>
-            <button type="button">2024년 6월 매출기준</button>
-            <button type="button" class="active">2024년 5월 매출기준</button>
-            <button type="button">2024년 4월 매출기준</button>
-            <button type="button">2024년 3월 매출기준</button>
-            <button type="button">2024년 2월 매출기준</button>
-            <button type="button">2024년 1월 매출기준</button>
-            <button type="button">2023년 12월 매출기준</button>
-            <button type="button">2023년 11월 매출기준</button>
-            <button type="button">3개월(2024년 8월 ~ 10월)매출기준</button>
-            <button type="button">6개월(2024년 5월 ~ 10월)매출기준</button>
-            <button type="button">
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 10월"
+            >
+              2024년 10월 매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 9월"
+            >
+              2024년 9월 매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 8월"
+            >
+              2024년 8월 매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 7월"
+            >
+              2024년 7월 매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 6월"
+            >
+              2024년 6월 매출기준
+            </button>
+            <button
+              type="button"
+              class="active sales-period-btn"
+              data-value="2024년 5월"
+            >
+              2024년 5월 매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 4월"
+            >
+              2024년 4월 매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 3월"
+            >
+              2024년 3월 매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 2월"
+            >
+              2024년 2월 매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 1월"
+            >
+              2024년 1월 매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 12월"
+            >
+              2023년 12월 매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 11월"
+            >
+              2023년 11월 매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 8월 ~ 10월"
+            >
+              3개월(2024년 8월 ~ 10월)매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2024년 5월 ~ 10월"
+            >
+              6개월(2024년 5월 ~ 10월)매출기준
+            </button>
+            <button
+              type="button"
+              class="sales-period-btn"
+              data-value="2023년 11월 ~ 2024년 10월"
+            >
               12개월(2023년 11월 ~ 2024년 10월)매출기준
             </button>
           </div>
@@ -158,7 +246,9 @@
           <button type="button" class="btn btn-default btn-modal-close">
             취소
           </button>
-          <button type="button" class="btn btn-primary">확인</button>
+          <button type="button" class="btn btn-primary btn-confirm">
+            확인
+          </button>
         </div>
       </div>
     </div>
@@ -351,6 +441,25 @@
         $(window).on("click", function (event) {
           if (!$(event.target).closest(".btn-dropdown").length) {
             $(".dropdown-content").removeClass("show");
+          }
+        });
+
+        // 매출 기준 버튼 클릭 이벤트
+        let selectedValue = null;
+
+        $(".sales-period-btn").click(function () {
+          selectedValue = $(this).data("value");
+          $(".sales-period-btn").removeClass("active");
+          $(this).addClass("active");
+        });
+
+        // 확인 버튼 클릭 이벤트
+        $(".btn-confirm").click(function () {
+          if (selectedValue) {
+            $(".btn-select").text(selectedValue);
+            $(".sales-period-modal").removeClass("open");
+          } else {
+            alert("매출 기준을 선택해주세요.");
           }
         });
 
