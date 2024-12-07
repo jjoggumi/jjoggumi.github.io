@@ -344,8 +344,6 @@ table tbody th {
 .modal.full .modal-foot {
   min-height: 58px;
 }
-.modal.noti {
-}
 .modal.noti .modal-wrap {
   width: 260px;
 }
@@ -581,13 +579,15 @@ header.open .menu-list {
 .search-area {
   position: absolute;
   top: 58px;
-  left: 10px;
-  right: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 999;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
   overflow: hidden;
+  max-width: 354px;
+  width: calc(100% - 20px);
 }
 .search-area .search-box {
   display: flex;
@@ -958,7 +958,7 @@ input[type="checkbox"]:disabled + label::before {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1001;
+  z-index: 9999;
   background: #fff;
   border-radius: 16px 16px 0 0;
   height: 0;
@@ -968,6 +968,9 @@ input[type="checkbox"]:disabled + label::before {
   top: auto;
   width: auto;
   display: block;
+}
+.store-report .dim {
+  display: none;
 }
 .store-report.open {
   height: calc(100dvh - 155px);
@@ -990,11 +993,13 @@ input[type="checkbox"]:disabled + label::before {
   font-size: 20px;
   font-weight: var(--font-sb);
   padding: 36px 24px 20px 24px;
+  background: #fff;
 }
 
 .store-report > .con {
   height: calc(100% - 84px);
   overflow-y: scroll;
+  background: #fff;
 }
 .store-report > .con > .download {
   background: #fff;
@@ -1003,18 +1008,18 @@ input[type="checkbox"]:disabled + label::before {
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  border:2px solid #00AD7A;
-  color:#009c6e;
-  width:calc(100% - 40px) ;
-  margin:0 auto;
-  border-radius:6px;
-  font-weight:var(--font-sb);
+  border: 2px solid #00ad7a;
+  color: #009c6e;
+  width: calc(100% - 40px);
+  margin: 0 auto;
+  border-radius: 6px;
+  font-weight: var(--font-sb);
 }
 .store-report > .con > .download::after {
   display: block;
   content: "";
-  background:#00AD7A ;
-  mask-image:url(../images/ico-down.svg);
+  background: #00ad7a;
+  mask-image: url(../images/ico-down.svg);
   width: 24px;
   height: 24px;
 }
@@ -1056,9 +1061,8 @@ input[type="checkbox"]:disabled + label::before {
 .store-report .tit-wrap {
   margin-bottom: 10px;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  flex-flow: column;
+  align-items: start;
 }
 .store-report .tit-wrap .tit {
   font-size: 16px;
@@ -1848,12 +1852,12 @@ input[type="checkbox"]:disabled + label::before {
 }
 .btn-info {
   background: var(--color-primary);
-  border:0;
-  border-radius:50px;
-  color:#fff;
-  width:18px;
-  height:18px;
-  margin-left:5px;  
+  border: 0;
+  border-radius: 50px;
+  color: #fff;
+  width: 18px;
+  height: 18px;
+  margin-left: 5px;
 }
 
 /* 중개사 카드 */
@@ -1916,8 +1920,6 @@ input[type="checkbox"]:disabled + label::before {
   font-size: 20px;
   font-weight: var(--font-m);
 }
-.shops-info-list .list {
-}
 .shops-info-list .list > li {
   border-top: 1px solid var(--color-line);
   padding: 10px 20px 10px 20px;
@@ -1967,4 +1969,64 @@ input[type="checkbox"]:disabled + label::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media (min-width: 1200px) {
+  .modal.full {
+    .modal-head .btn-prev {
+      display: none;
+    }
+    .modal-wrap {
+      max-width: 600px;
+      border-radius: 12px;
+      max-height: calc(100% - 20px);
+      margin: 10px auto;
+      position: relative;
+
+      .btn-sales-search {
+        position: static;
+        width: 100%;
+      }
+    }
+  }
+  .store-report {
+    max-width: 600px;
+    border-radius: 12px;
+    max-height: calc(100% - 20px);
+    margin: 10px auto;
+    height: calc(100dvh - 20px);
+    display: none;
+    top: 0;
+
+    &.open {
+      display: block;
+      height: 100dvh;
+      .dim {
+        display: block;
+      }
+    }
+    .dim {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+      display: none;
+    }
+    .btn-compare {
+      display: inline-block;
+      position: static;
+      transform: none;
+      margin: 0 20px 20px;
+    }
+  }
+  .competitor-sales .store-report .check-list,
+  .competitor-sales .store-report .check-list + .chart-wrap {
+    padding-bottom: 0px;
+  }
+  .store-report .business-status {
+    height: 270px;
+  }
 }
