@@ -1766,7 +1766,7 @@ input[type="checkbox"]:disabled + label::before {
   margin: 0;
 }
 
-.rent-info .list li {
+.rent-info .list > li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1794,7 +1794,7 @@ input[type="checkbox"]:disabled + label::before {
   border: 0;
   border-radius: 0;
 }
-.rent-detail .list li {
+.rent-detail .list > li {
   font-size: 14px;
   padding: 10px 20px;
 }
@@ -1805,6 +1805,98 @@ input[type="checkbox"]:disabled + label::before {
   border-top: 1px solid var(--color-line);
   font-weight: var(--font-sb);
 }
+.rent-detail .rent-img {
+  position: relative;
+}
+.rent-detail .rent-img .slick-arrow {
+  position: absolute;
+  top: calc(50% - 17px);
+  text-indent: -999999999px;
+  border: 0;
+  background-color: #fff;
+  background-position: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  box-shadow: 0 0 15px rgb(0 0 0 / 25%);
+  z-index: 9999;
+}
+.rent-detail .rent-img .slick-prev {
+  left: 10px;
+  background-image: url(../images/ico-prev.svg);
+}
+.rent-detail .rent-img .slick-next {
+  right: 10px;
+  background-image: url(../images/ico-next.svg);
+}
+.rent-detail .rent-img .slider-counter {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: #fff;
+  min-width: 60px;
+  padding: 5px 15px;
+  border-radius: 50px;
+}
+.btn-info {
+  background: var(--color-primary);
+  border:0;
+  border-radius:50px;
+  color:#fff;
+  width:18px;
+  height:18px;
+  margin-left:5px;  
+}
+
+/* 중개사 카드 */
+.realtor-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 0px 15px;
+  border: 1px solid #e5e6ea;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 10px;
+}
+
+.realtor-card .office-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.realtor-card .photo {
+  width: 80px;
+  height: 80px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #999;
+  background: url(../images/realtor-photo.png);
+  margin-left: 20px;
+}
+.realtor-card .details {
+  margin: 0 20px;
+  flex: 1;
+}
+
+.realtor-card .details > li {
+  font-size: 14px;
+  color: #666;
+  padding: 2px 0;
+}
+
 /* 매장 리스트 모달 */
 .shops-info-list {
   border-radius: 16px;
@@ -1819,7 +1911,7 @@ input[type="checkbox"]:disabled + label::before {
 }
 .shops-info-list .list {
 }
-.shops-info-list .list li {
+.shops-info-list .list > li {
   border-top: 1px solid var(--color-line);
   padding: 10px 20px 10px 20px;
   font-size: 15px;

@@ -579,8 +579,22 @@
         </div>
         <div class="modal-body">
           <div class="rent-info">
-            <div class="img">
-              <img src="./images/rent.png" alt="AAA빌딩" />
+            <div class="rent-img">
+              <div class="img">
+                <div>
+                  <img src="./images/rent.png" alt="AAA빌딩" />
+                </div>
+                <div>
+                  <img src="./images/rent.png" alt="AAA빌딩" />
+                </div>
+                <div>
+                  <img src="./images/rent.png" alt="AAA빌딩" />
+                </div>
+                <div>
+                  <img src="./images/rent.png" alt="AAA빌딩" />
+                </div>
+              </div>
+              <div class="slider-counter">1 / 4</div>
             </div>
             <div class="rep">
               <div class="cate">
@@ -602,26 +616,66 @@
             </ul>
             <div class="tit">기타정보</div>
             <ul class="list">
-              <li><span>권리금</span> 5,000만원</li>
-              <li><span>관리비</span> 50만원</li>
-              <li><span>평수</span> 102.48㎡[31평]</li>
-              <li><span>기타</span> 1/8층, 남동향, 주차가능(총 80대)</li>
-              <li><span>주소</span> 서울시 서대문구 홍제천 6길 29 104호</li>
+              <li><span>매물 ID</span> 1234</li>
+              <li><span>현재업종</span> 음식점</li>
+              <li><span>제한업종</span> 학원</li>
+              <li><span>인허가 업종</span> 업종A, 업종B 등</li>
+              <li><span>난방(방식/연료)</span> 개별난방/전기</li>
+              <li><span>입주가능일</span> 날짜 또는 즉시</li>
+              <li><span>사용승인일</span> 1998.02.24</li>
+              <li><span>건출물용도</span> 제1종 근린생활시설</li>
             </ul>
             <div class="tit">주변정보</div>
             <ul class="list">
-              <li><span>권리금</span> 5,000만원</li>
-              <li><span>관리비</span> 50만원</li>
-              <li><span>평수</span> 102.48㎡[31평]</li>
-              <li><span>기타</span> 1/8층, 남동향, 주차가능(총 80대)</li>
-              <li><span>주소</span> 서울시 서대문구 홍제천 6길 29 104호</li>
+              <li><span>학교수</span> 초등학교 2개, 중고교 2개, 유치원 1개</li>
+              <li><span>대중교통</span> ooo역(분당선)</li>
+              <li><span>병의원시설</span> ooo변원, ooo약국</li>
+              <li><span>편의시설</span> ooo마트</li>
+              <li><span>공원시설</span> ooo공원</li>
+            </ul>
+            <div class="tit">건물대장정보</div>
+            <ul class="list">
+              <li><span>주용도</span> 판매시설</li>
+              <li><span>지역</span> 중심상업지역</li>
+              <li><span>구역</span> 제1종지구단위계획구역</li>
+              <li><span>건축면적</span> 1956.4㎡</li>
+              <li><span>주차장</span> 총 163식</li>
+              <li><span>엘레베이터</span> 총 2대</li>
+              <li><span>총 호수</span> 89호</li>
+              <li><span>사용승인일</span> 2001.01</li>
+              <li><span>층정보</span> 지하 4층/지상 8층</li>
+            </ul>
+            <div class="tit">중개사 정보</div>
+            <div class="list">
+              <div class="realtor-card">
+                <div class="office-name">오픈메이트공인중개사사무소</div>
+                <div class="photo"></div>
+                <ul class="details">
+                  <li>대표 : 홍길동</li>
+                  <li>등록번호 : 11680-2019-00148</li>
+                  <li>대표번호 : 1599-1234</li>
+                  <li>경기 성남시 분당구 정자동 25-1</li>
+                  <li>보유 매물건수 : 215</li>
+                </ul>
+              </div>
+            </div>
+            <div class="tit">중개보수</div>
+            <ul class="list">
+              <li><span>중개보수</span> 최대 180만원(VAT 별도)</li>
+              <li>
+                <span
+                  >상한요율<button type="button" class="btn-info">
+                    ?
+                  </button></span
+                >
+                0.9%
+              </li>
             </ul>
           </div>
         </div>
         <div class="modal-foot">
-          <button type="button" class="btn btn-primary btn-modal-close">
-            닫기
-          </button>
+          <button type="button" class="btn btn-default btn-close">닫기</button>
+          <button type="button" class="btn btn-primary">허위매물신고</button>
         </div>
       </div>
     </div>
@@ -825,12 +879,31 @@
               arrows: true,
             });
           } else if (targetClass === "store-report") {
-            // 렌트 리스트 슬라이드
+            // 리포트내 렌트 리스트 슬라이드
             $(".store-report .rents-info-list").slick({
               dots: false,
               slidesToShow: 1,
               arrows: false,
               variableWidth: true, // 슬라이드의 가변 너비를 허용
+            });
+          } else if (targetClass === "rent-detail") {
+            const $slider = $(".rent-detail .rent-info .img");
+            const $counter = $(".rent-detail .slider-counter");
+            // 렌트 상세 이미지슬라이드
+            $slider.slick({
+              dots: false,
+              slidesToShow: 1,
+              arrows: true,
+            });
+            $slider.on("afterChange", function (event, slick, currentSlide) {
+              const currentIndex = currentSlide + 1; // 현재 슬라이드 번호 (1부터 시작)
+              const totalSlides = slick.slideCount; // 총 슬라이드 개수
+              $counter.text(`${currentIndex} / ${totalSlides}`);
+            });
+            // 초기 넘버링 설정
+            $slider.on("init", function (event, slick) {
+              const totalSlides = slick.slideCount;
+              $counter.text(`1 / ${totalSlides}`);
             });
           }
         });
