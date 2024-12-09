@@ -822,6 +822,7 @@ input[type="checkbox"]:disabled + label::before {
   position: absolute;
 }
 .poiIco .info-box {
+  border: 1px solid #0b1d59;
   position: relative;
   min-height: 32px;
   background: #fff;
@@ -843,8 +844,7 @@ input[type="checkbox"]:disabled + label::before {
 }
 .poiIco .info-box .name {
   display: block;
-  padding: 8px 8px;
-  border: 0;
+  padding: 7px 8px;
   background: transparent;
 }
 .poiIco .info-box .multi {
@@ -950,6 +950,129 @@ input[type="checkbox"]:disabled + label::before {
 }
 .poiIco.population .smr {
   font-size: 12px;
+}
+
+/* 내주변 경쟁매장 */
+.poiIco .info-box .ico {
+  mask-image: url(../images/ico-pois.svg);
+  background-color: #0b1d59;
+  width: 21px;
+  height: 26px;
+  display: block;
+  position: absolute;
+  bottom: -35px;
+  left: calc(50% - 10px);
+}
+.poiIco .info-box .ico::before {
+  content: "";
+  display: block;
+  width: 9px;
+  height: 9px;
+  background: #fff;
+  border-radius: 50px;
+  position: absolute;
+  top: 6px;
+  left: calc(50% - 4px);
+}
+
+.poiIco.area01 .info-box {
+  border-color: #dd0000;
+}
+.poiIco.area01 .info-box::after {
+  border-top-color: #dd0000;
+}
+.poiIco.area01 .info-box .ico {
+  background-color: #dd0000;
+}
+
+.poiIco.area02 .info-box {
+  border-color: #f38e00;
+}
+.poiIco.area02 .info-box::after {
+  border-top-color: #f38e00;
+}
+.poiIco.area02 .info-box .ico {
+  background-color: #f38e00;
+}
+
+.poiIco.area03 .info-box {
+  border-color: #ffbb00;
+}
+.poiIco.area03 .info-box::after {
+  border-top-color: #ffbb00;
+}
+.poiIco.area03 .info-box .ico {
+  background-color: #ffbb00;
+}
+
+.poiIco.area04 .info-box {
+  border-color: #00dc8f;
+}
+.poiIco.area04 .info-box::after {
+  border-top-color: #00dc8f;
+}
+.poiIco.area04 .info-box .ico {
+  background-color: #00dc8f;
+}
+
+.poiIco.area05 .info-box {
+  border-color: #00acdc;
+}
+.poiIco.area05 .info-box::after {
+  border-top-color: #00acdc;
+}
+.poiIco.area05 .info-box .ico {
+  background-color: #00acdc;
+}
+
+.poiIco.area06 .info-box {
+  border-color: #0039f4;
+}
+.poiIco.area06 .info-box::after {
+  border-top-color: #0039f4;
+}
+.poiIco.area06 .info-box .ico {
+  background-color: #0039f4;
+}
+
+.poiIco.area07 .info-box {
+  border-color: #7d00dc;
+}
+.poiIco.area07 .info-box::after {
+  border-top-color: #7d00dc;
+}
+.poiIco.area07 .info-box .ico {
+  background-color: #7d00dc;
+}
+
+.poiIco.area08 .info-box {
+  border-color: #e100d0;
+}
+.poiIco.area08 .info-box::after {
+  border-top-color: #e100d0;
+}
+.poiIco.area08 .info-box .ico {
+  background-color: #e100d0;
+}
+
+.poiIco.area09 .info-box {
+  border-color: #8b8b8b;
+}
+.poiIco.area09 .info-box::after {
+  border-top-color: #8b8b8b;
+}
+.poiIco.area09 .info-box .ico {
+  background-color: #8b8b8b;
+}
+
+.poiIco.area10 .info-box {
+  border-color: #000000;
+}
+.poiIco.area10 .info-box::after {
+  border-top-color: #000000;
+}
+.poiIco.area10 .info-box .ico {
+  background-color: #000000;
 }
 
 /* 매장 리포트트 */
