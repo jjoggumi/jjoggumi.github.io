@@ -1342,10 +1342,10 @@ input[type="checkbox"]:disabled + label::before {
   justify-content: space-around;
 }
 .store-report .status-wrap .age-group div[class^="age"] {
-  width: 30px;
+  width: 35px;
   height: 100px;
   background: #e2e3e5;
-  border-radius: 50px;
+  border-radius: 100px;
   margin-top: 24px;
   position: relative;
 }
@@ -1364,7 +1364,12 @@ input[type="checkbox"]:disabled + label::before {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-flow: column;
 }
+.store-report .status-wrap .age-group div[class^="age"] .age-bar span {
+  display: block;
+}
+
 .store-report .status-wrap .age-group .age10 .age-bar {
   background: #ff7c7c;
 }
