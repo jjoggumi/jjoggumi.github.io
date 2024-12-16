@@ -561,13 +561,17 @@
       document.addEventListener("DOMContentLoaded", function () {
         // 내 주변 경쟁 매장 기준 시점별 매출
         var ctx11 = document.getElementById("chart11").getContext("2d");
+
+        // #18 데이터 배열 선언
+        var data11 = [-7, 14, 9, 6, -2]; // 데이터를 명확히 선언
+
         var chart11 = new Chart(ctx11, {
           type: "bar",
           data: {
             labels: ["내 매장", "AAA", "BBB", "CCC", "DDD"],
             datasets: [
               {
-                data: [1000, 1700, 1600, 600, 800],
+                data: data11,
                 backgroundColor: [
                   "#0B1D59", // 내 매장 색상
                   "#d9d9d9",
@@ -575,12 +579,23 @@
                   "#d9d9d9",
                   "#d9d9d9",
                 ],
-                borderRadius: {
-                  topLeft: 50,
-                  topRight: 50,
-                  bottomLeft: 0,
-                  bottomRight: 0,
-                },
+                // #18 데이터 의 값에 따라 동적으로 borderRadius 설정
+                borderRadius: data11.map((value) => {
+                  // 값에 따라 동적으로 borderRadius 설정
+                  return value > 0
+                    ? {
+                        topLeft: 50,
+                        topRight: 50,
+                        bottomLeft: 0,
+                        bottomRight: 0,
+                      } // 위쪽 둥글게
+                    : {
+                        topLeft: 0,
+                        topRight: 0,
+                        bottomLeft: 50,
+                        bottomRight: 50,
+                      }; // 아래쪽 둥글게
+                }),
                 borderSkipped: false,
                 barThickness: 20,
               },
