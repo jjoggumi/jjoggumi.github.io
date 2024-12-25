@@ -206,7 +206,7 @@
             <div class="tit">최근 검색 내역</div>
             <ul class="recent-search-list">
               <li>
-                <input type="radio" id="61" name="recent-search" checked />
+                <input type="radio" id="61" name="recent-search" />
                 <label for="61"> 독립문 태권도 </label>
               </li>
               <li>
@@ -236,12 +236,19 @@
       <div class="tit">개업 시 예상매출</div>
       <button type="button" class="btn-close"></button>
       <div class="con">
-        <div class="download">자세한 자료를 보시려면 다운받아주세요!</div>
+        <div class="download">
+          상세 데이터는 다운로드 받아 보실 수 있습니다.
+        </div>
         <div class="smr">
-          <span class="underline">서대문역</span>의
-          <span class="underline">분식업종</span>은 내 매장이 위치한 지역과
-          비교한 결과 직전월 기준
+          2024년 10월 기준 <span class="underline">서대문역의 분식업종</span>은
+          내 매장의 매출액과 비교한 결과
           <span class="underline">평균 매출액이 21% 낮습니다.</span>
+          <!-- 
+          최근 3개월(2024년 7월~ 9월) 월평균 기준 <span class="underline">서대문역의 분식업종</span>은 내 매장의 매출액과 
+          비교한 결과 <span class="underline">평균 매출액이 21% 높습니다.</span>
+
+          최근 12개월(2023년 10월~2024년 9월) 기준 <span class="underline">서대문역의 분식업종</span>은 내 매장의 매출액과 
+          비교한 결과 <span class="underline">평균 매출액이 21% 높습니다.</span> -->
         </div>
 
         <!-- 기준 시점별 분식업종 매출 -->
@@ -258,9 +265,9 @@
         <!-- 내가 선택한 지역의 경쟁 매장 기준 매출 -->
         <section class="list">
           <div class="tit-wrap">
-            <div class="tit">내가 선택한 지역의 경쟁 매장 기준 매출</div>
+            <div class="tit">내가 선택한 경쟁 매장 매출</div>
             <div class="smr">
-              비교해 보시고 싶은 경쟁 매장을 5곳을 선택해주세요
+              내 매장과 비교하고 싶은 경쟁 매장 5곳을 직접 선택해 주세요.
             </div>
           </div>
           <ul class="check-list">
@@ -966,8 +973,8 @@
             event.preventDefault();
             var msgTit = `
             개업을 원하시는<br>
-            경쟁매장을 함께 보시려면<br>
-            지역과 업종을 검색해주세요.
+            지역의 정보를 보시려면<br>
+            지역과 업종을 검색해 주세요.
             `;
             $(".noti-modal .modal-body").html(
               '<div class="tit">' + msgTit + "</div>"
@@ -1034,8 +1041,9 @@
         //개업시 예상매출 검색 : 모달내 체크박스 상태에 따라 open-btn 클래스 추가/제거
         // open-btn 클래스 추가시 하단 검색 버튼 활성화 및 컨텐츠 하단에 검색 버튼 영역 만큼 여백 추가
         function updateOpenBtnClass() {
-          const checkboxes = $(".expected-sales-search input[type='checkbox']");
+          const checkboxes = $(".expected-sales-search input[type='radio']");
           const isChecked = checkboxes.is(":checked");
+          console.log(isChecked);
           $(".expected-sales-search").toggleClass("open-btn", isChecked);
         }
 
@@ -1043,7 +1051,7 @@
         updateOpenBtnClass();
 
         //개업시 예상매출 검색 : 모달내 체크박스 상태 변경 시 업데이트
-        $(".expected-sales-search input[type='checkbox']").change(
+        $(".expected-sales-search input[type='radio']").change(
           updateOpenBtnClass
         );
 

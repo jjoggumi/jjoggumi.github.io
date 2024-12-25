@@ -1157,7 +1157,7 @@ input[type="radio"]:checked + label::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 10px;
   border: 2px solid #00ad7a;
   color: #009c6e;
   width: calc(100% - 40px);
@@ -1175,7 +1175,7 @@ input[type="radio"]:checked + label::after {
 }
 
 .store-report .con > .smr {
-  padding: 24px 80px 24px 24px;
+  padding: 24px 80px 20px 24px;
   font-size: 1.6rem;
   position: relative;
 }
@@ -1190,6 +1190,14 @@ input[type="radio"]:checked + label::after {
   top: calc(50% - 25px);
   border-radius: 100px;
   background: #f5f5f5 url(../images/ico-shop.svg) no-repeat center;
+}
+
+.store-report .con > .smr + .smr {
+  padding: 0px 24px 24px 24px;
+  font-size: 1.4rem;
+}
+.store-report .con > .smr + .smr::after {
+  display: none;
 }
 
 .store-report .underline {

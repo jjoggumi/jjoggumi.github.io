@@ -260,33 +260,39 @@
       <div class="tit">내주변 경쟁 매장 매출현황</div>
       <button type="button" class="btn-close"></button>
       <div class="con">
-        <div class="download">자세한 자료를 보시려면 다운받아주세요!</div>
+        <div class="download">
+          상세 데이터는 다운로드 받아 보실 수 있습니다.
+        </div>
         <div class="smr">
-          내 매장 매출은
-          <span class="underline">2024년 8월 매출 기준</span>
-          내가 속한 상권 내에서
-          <span class="underline">평균매출 대비 21% 높습니다.</span>
+          <span class="underline">2024년 8월 매출 기준</span> 내 매장이 속한
+          상권에서 <span class="underline">평균 매출 대비 21% 높습니다.</span>
+
+          <!-- <span class="underline">최근 3개월(2024년 7월~ 9월) 월평균 매출 기준</span>
+          내 매장이 속한 상권에서 <span class="underline">평균 매출 대비 21% 낮습니다.</span>
+          
+          <span class="underline">최근 12개월(2023년 10월~2024년 9월 ) 월평균 매출 기준</span>
+          내 매장이 속한 상권에서<span class="underline">평균 매출 대비 동일합니다. </span> -->
         </div>
         <!-- 내 주변 매장 기준 시점별 매출 -->
         <section>
           <div class="tit-wrap">
-            <div class="tit">내 주변 매장 기준 시점별 매출</div>
+            <div class="tit">내 주변 경쟁 매장 매출</div>
             <div class="unit">(단위 : 만원)</div>
           </div>
           <div class="chart-wrap">
             <canvas id="chart11" style="width: 100%; height: 100%"></canvas>
           </div>
           <div class="ref">
-            * 비교매장은 내 매장기준 높은 증가율부터 낮은 감소율에 있는
-            경쟁업체로 선정되었습니다.
+            * 비교 매장 선정 기준은 내 매장 주변에 경쟁업체들 중 매출 증가율이
+            높은 곳부터 낮아지는 순으로 선정되었습니다.
           </div>
         </section>
         <!-- 내가 선택한 경쟁 매장 기준 매출 -->
         <section class="list">
           <div class="tit-wrap">
-            <div class="tit">내가 선택한 경쟁 매장 기준 매출</div>
+            <div class="tit">내가 선택한 경쟁 매장 매출</div>
             <div class="smr">
-              내 매장과 비교 하시고 싶은 경쟁 매장을 선택해주세요.
+              내 매장과 비교하고 싶은 경쟁 매장 4곳을 직접 선택해 주세요.
             </div>
           </div>
           <ul class="check-list">
