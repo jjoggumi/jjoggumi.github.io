@@ -1524,6 +1524,7 @@ input[type="radio"]:checked + label::after {
 }
 .store-report .rents-info-list .slick-slide {
   margin-right: 10px; /* 슬라이드 간의 간격을 조정 */
+  margin-top: 2px;
 }
 .store-report .rents-info-list .slick-list {
   margin-right: -20px; /* 오른쪽 마진 추가 */
@@ -2227,5 +2228,31 @@ input[type="radio"]:checked + label::after {
   }
   .store-report .business-status {
     height: 270px;
+  }
+}
+/* 기본 대체 이미지 스타일 */
+.rent-noimg {
+  content: url("./images/rent-noimg.png");
+}
+.profile-noimg {
+  content: url("./images/realtor-noimg.png");
+}
+
+/* 해상도 별 대체 이미지 스타일 */
+@media (min-width: 1200px) {
+  .rent-noimg {
+    content: url("./images/rent-noimg-1200.png");
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .rent-noimg {
+    content: url("./images/rent-600.png");
+  }
+}
+
+@media (max-width: 767px) {
+  .rent-noimg {
+    content: url("./images/rent-noimg-360.png");
   }
 }

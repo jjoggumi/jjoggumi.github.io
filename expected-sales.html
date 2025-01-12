@@ -333,7 +333,11 @@
             <div>
               <div class="rent-info">
                 <div class="img">
-                  <img src="./images/rent.png" alt="AAA빌딩" />
+                  <img
+                    src="./images/rent1.png"
+                    alt="AAA빌딩"
+                    onerror="imageError(this)"
+                  />
                 </div>
                 <div class="rep">
                   <div class="cate">
@@ -367,7 +371,11 @@
             <div>
               <div class="rent-info">
                 <div class="img">
-                  <img src="./images/rent.png" alt="AAA빌딩" />
+                  <img
+                    src="./images/rent.png"
+                    alt="AAA빌딩"
+                    onerror="imageError(this)"
+                  />
                 </div>
                 <div class="rep">
                   <div class="cate">
@@ -401,7 +409,11 @@
             <div>
               <div class="rent-info">
                 <div class="img">
-                  <img src="./images/rent.png" alt="AAA빌딩" />
+                  <img
+                    src="./images/rent.png"
+                    alt="AAA빌딩"
+                    onerror="imageError(this)"
+                  />
                 </div>
                 <div class="rep">
                   <div class="cate">
@@ -468,7 +480,11 @@
             <div>
               <div class="rent-info">
                 <div class="img">
-                  <img src="./images/rent.png" alt="AAA빌딩" />
+                  <img
+                    src="./images/rent111.png"
+                    alt="AAA빌딩"
+                    onerror="imageError(this)"
+                  />
                 </div>
                 <div class="rep">
                   <div class="cate">
@@ -499,7 +515,11 @@
             <div>
               <div class="rent-info">
                 <div class="img">
-                  <img src="./images/rent.png" alt="AAA빌딩" />
+                  <img
+                    src="./images/rent.png"
+                    alt="AAA빌딩"
+                    onerror="imageError(this)"
+                  />
                 </div>
                 <div class="rep">
                   <div class="cate">
@@ -530,7 +550,11 @@
             <div>
               <div class="rent-info">
                 <div class="img">
-                  <img src="./images/rent.png" alt="AAA빌딩" />
+                  <img
+                    src="./images/rent.png"
+                    alt="AAA빌딩"
+                    onerror="imageError(this)"
+                  />
                 </div>
                 <div class="rep">
                   <div class="cate">
@@ -590,16 +614,32 @@
             <div class="rent-img">
               <div class="img">
                 <div>
-                  <img src="./images/rent.png" alt="AAA빌딩" />
+                  <img
+                    src="./images/rent.png"
+                    alt="AAA빌딩"
+                    onerror="imageError(this)"
+                  />
                 </div>
                 <div>
-                  <img src="./images/rent.png" alt="AAA빌딩" />
+                  <img
+                    src="./images/rent.png"
+                    alt="AAA빌딩"
+                    onerror="imageError(this)"
+                  />
                 </div>
                 <div>
-                  <img src="./images/rent.png" alt="AAA빌딩" />
+                  <img
+                    src="./images/rent.png"
+                    alt="AAA빌딩"
+                    onerror="imageError(this)"
+                  />
                 </div>
                 <div>
-                  <img src="./images/rent.png" alt="AAA빌딩" />
+                  <img
+                    src="./images/rent.png"
+                    alt="AAA빌딩"
+                    onerror="imageError(this)"
+                  />
                 </div>
               </div>
               <div class="slider-counter">1 / 4</div>
@@ -1101,6 +1141,12 @@
           '<div class="tit">' + message + "</div>"
         );
         $(".noti-modal").addClass("open");
+      }
+      // 이미지 없는 경우
+      function imageError(img) {
+        img.onerror = null; // 무한 루프 방지
+        img.src = "./images/rent-noimg.png"; // 기본 대체 이미지
+        img.classList.add("noimg");
       }
 
       ///////////////////////////// chart /////////////////////////////
