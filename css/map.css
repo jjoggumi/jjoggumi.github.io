@@ -385,7 +385,7 @@ header {
   left: 0;
   right: 0;
   background: rgb(0 0 0 / 0%);
-  z-index: 9999;
+  z-index: 99999;
   transition: 0.5s;
 }
 header.open {
