@@ -1540,7 +1540,7 @@ input[type="radio"]:checked + label::after {
 /* 내 주변 경쟁 매장 매출 현황 */
 .competitor-sales .store-report .check-list,
 .competitor-sales .store-report .check-list + .chart-wrap {
-  padding-bottom: 60px;
+  padding-bottom: 77px;
 }
 
 /* 변화기준 */
