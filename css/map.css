@@ -849,7 +849,7 @@ input[type="radio"]:checked + label::after {
   position: absolute;
 }
 .poiIco .info-box {
-  border: 1px solid #0b1d59;
+  border: 1px solid #0039f4;
   position: relative;
   min-height: 32px;
   background: #fff;
@@ -863,7 +863,7 @@ input[type="radio"]:checked + label::after {
   display: block;
   content: "";
   position: absolute;
-  border-top: 6px solid #0b1d59;
+  border-top: 6px solid #0039f4;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   bottom: -6px;
@@ -906,6 +906,7 @@ input[type="radio"]:checked + label::after {
 /* 내가게  */
 .poiIco.my-shop .info-box {
   background: #0b1d59;
+  border: 1px solid #0b1d59;
   color: #ffeb00;
 }
 .poiIco.my-shop .info-box::after {
@@ -962,6 +963,7 @@ input[type="radio"]:checked + label::after {
   width: 90px;
   height: 90px;
   background: var(--color-secondary);
+  border-color: var(--color-secondary);
   color: #fff;
   display: flex;
   flex-flow: column;
@@ -982,7 +984,7 @@ input[type="radio"]:checked + label::after {
 /* 내주변 경쟁매장 */
 .poiIco .info-box .ico {
   mask-image: url(../images/ico-pois.svg);
-  background-color: #0b1d59;
+  background-color: #0039f4;
   width: 21px;
   height: 26px;
   display: block;
@@ -1051,17 +1053,26 @@ input[type="radio"]:checked + label::after {
 .poiIco.area04 .info-box .ico {
   background-color: #00acdc;
 }
-
+/* 
 .poiIco.area05 .info-box {
-  border-color: #0039f4;
+  border-color: #0b1d59;
 }
 .poiIco.area05 .info-box::after {
-  border-top-color: #0039f4;
+  border-top-color: #0b1d59;
 }
 .poiIco.area05 .info-box .ico {
-  background-color: #0039f4;
-}
+  background-color: #0b1d59;
+} */
 
+.poiIco.area05 .info-box {
+  border-color: #5c56f1;
+}
+.poiIco.area05 .info-box::after {
+  border-top-color: #5c56f1;
+}
+.poiIco.area05 .info-box .ico {
+  background-color: #5c56f1;
+}
 .poiIco.area06 .info-box {
   border-color: #7d00dc;
 }
@@ -1083,23 +1094,32 @@ input[type="radio"]:checked + label::after {
 }
 
 .poiIco.area08 .info-box {
-  border-color: #8b8b8b;
+  border-color: #6d9c00;
 }
 .poiIco.area08 .info-box::after {
-  border-top-color: #8b8b8b;
+  border-top-color: #6d9c00;
 }
 .poiIco.area08 .info-box .ico {
-  background-color: #8b8b8b;
+  background-color: #6d9c00;
 }
 
 .poiIco.area09 .info-box {
-  border-color: #000000;
+  border-color: #00ac2e;
 }
 .poiIco.area09 .info-box::after {
-  border-top-color: #000000;
+  border-top-color: #00ac2e;
 }
 .poiIco.area09 .info-box .ico {
-  background-color: #000000;
+  background-color: #00ac2e;
+}
+.poiIco.area10 .info-box {
+  border-color: #63310f;
+}
+.poiIco.area10 .info-box::after {
+  border-top-color: #63310f;
+}
+.poiIco.area10 .info-box .ico {
+  background-color: #63310f;
 }
 
 /* 매장 리포트트 */
