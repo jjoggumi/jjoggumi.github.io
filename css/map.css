@@ -2200,7 +2200,8 @@ input[type="radio"]:checked + label::after {
 
     &.open {
       display: block;
-      height: 100dvh;
+      height: calc(100dvh - 70px);
+      top: 50px;
       .dim {
         display: block;
       }
