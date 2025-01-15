@@ -218,8 +218,8 @@ table tbody th {
 .modal .modal-wrap {
   width: 95%;
   max-width: 325px;
-  max-height: calc(100% - 20px);
-  margin: 10px auto;
+  max-height: calc(100% - 70px);
+  margin: 60px auto 10px;
   background: #fff;
   overflow: hidden;
   border-radius: 12px;
