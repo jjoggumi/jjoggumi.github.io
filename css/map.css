@@ -219,7 +219,7 @@ table tbody th {
   width: 95%;
   max-width: 325px;
   max-height: calc(100% - 70px);
-  margin: 60px auto 10px;
+  margin: 10px auto 10px;
   background: #fff;
   overflow: hidden;
   border-radius: 12px;
@@ -385,7 +385,7 @@ header {
   left: 0;
   right: 0;
   background: rgb(0 0 0 / 0%);
-  z-index: 99999;
+  z-index: 9999;
   transition: 0.5s;
 }
 header.open {
@@ -622,7 +622,7 @@ header.open .menu-list {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 99;
   background: #fff;
   border-radius: 30px 30px 0 0;
   box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
@@ -1128,7 +1128,7 @@ input[type="radio"]:checked + label::after {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 999;
   background: #fff;
   border-radius: 16px 16px 0 0;
   height: 0;
@@ -1569,7 +1569,7 @@ input[type="radio"]:checked + label::after {
   position: absolute;
   top: calc(50% - 80px);
   right: 10px;
-  z-index: 1000;
+  z-index: 99;
   width: 50px;
   font-size: 12px;
   letter-spacing: -0.5px;
@@ -1675,20 +1675,20 @@ input[type="radio"]:checked + label::after {
   text-indent: -99999999999999px;
 }
 .expected-sales .bottom-area .btn-likes {
-  width: 155px;
+  width: 130px;
   height: 36px;
   box-shadow: 0 0 10px rgb(0 0 0 / 30%);
   position: absolute;
-  left: calc(50% - 80px);
+  left: calc(50% - 65px);
   top: -50px;
   z-index: 999;
   border: 0;
   border-radius: 50px;
-  background: #fa4422 url(../images/ico-likes.svg) no-repeat 8px 8px;
+  background: #fa4422 url(../images/ico-likes.svg) no-repeat 10px 8px;
   background-size: 20px;
   color: #fff;
   font-size: 14px;
-  padding-left: 20px;
+  padding-left: 25px;
 }
 
 /* 개업 시 예상매출 검색 */
@@ -1750,9 +1750,10 @@ input[type="radio"]:checked + label::after {
 }
 .expected-sales-search .list-wrap ul li {
   height: 40px;
+  border-bottom: 1px solid #e5e6ea;
 }
-.expected-sales-search .list-wrap ul li + li {
-  border-top: 1px solid #e5e6ea;
+.expected-sales-search .list-wrap ul li:last-child {
+  border-bottom: 0;
 }
 .expected-sales-search .list-wrap ul li label {
   display: block;
@@ -2220,8 +2221,10 @@ input[type="radio"]:checked + label::after {
 
     &.open {
       display: block;
-      height: calc(100dvh - 70px);
-      top: 50px;
+      height: calc(100dvh - 40px);
+      top: 10px;
+      z-index: 9999;
+
       .dim {
         display: block;
       }
